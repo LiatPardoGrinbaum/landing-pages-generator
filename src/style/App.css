@@ -1,0 +1,84 @@
+.Header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 6rem;
+}
+
+.navbar-inner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 0rem 2rem;
+}
+
+.navbar-left {
+  display: flex;
+  margin-left: 2rem;
+  flex-wrap: wrap;
+}
+
+.navbar-right {
+  display: flex;
+  margin-right: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.navbar-link {
+  font-size: 1.2rem;
+  margin-bottom: 0.6rem;
+  font-weight: bold;
+}
+.navbar-link a {
+  text-decoration: none;
+  text-shadow: 2px 2px 3px black;
+  color: rgb(207, 255, 211);
+  border: 1px solid transparent;
+  padding-bottom: 0.4rem;
+}
+.navbar-link a:hover {
+  color: white;
+  border-bottom: 1px solid rgb(207, 255, 211);
+}
+
+.homepage {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.main-homepage .welcome {
+  width: 60%;
+  min-height: 25rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2rem;
+}
+
+.App {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: fixed;
+  flex-direction: column;
+  background: url("../assets/images/Scene-24.jpg") no-repeat center center/cover;
+  font-family: "Merriweather Sans", sans-serif;
+  background-attachment: fixed;
+}
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  /* margin-top: 8rem; */
+  width: 100%;
+  min-height: 100vh;
+}/*# sourceMappingURL=App.css.map */

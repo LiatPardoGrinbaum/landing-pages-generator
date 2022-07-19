@@ -1,0 +1,48 @@
+.Header {
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  min-height: 6rem;
+}
+
+.navbar-inner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 0rem 2rem;
+  // border-bottom: 2px solid rgb(63, 128, 203);
+}
+
+.navbar-left {
+  display: flex;
+  margin-left: 2rem;
+  flex-wrap: wrap;
+}
+
+.navbar-right {
+  display: flex;
+  margin-right: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.navbar-link {
+  font-size: 1.2rem;
+  margin-bottom: 0.6rem;
+  font-weight: bold;
+
+  a {
+    text-decoration: none;
+    text-shadow: 2px 2px 3px black;
+    color: rgb(207, 255, 211);
+    border: 1px solid transparent;
+    padding-bottom: 0.4rem;
+    &:hover {
+      color: white;
+      border-bottom: 1px solid rgb(207, 255, 211);
+    }
+  }
+}

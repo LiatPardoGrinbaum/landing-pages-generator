@@ -1,0 +1,21 @@
+.homepage {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  // background: url("../assets/images/Scene-24.jpg") no-repeat center center/cover;
+  flex-direction: column;
+}
+
+.main-homepage {
+  .welcome {
+    width: 60%;
+    min-height: 25rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2rem;
+  }
+}

@@ -1,0 +1,23 @@
+@import "./header";
+@import "./variables";
+@import "./homepage";
+
+.App {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: fixed;
+  flex-direction: column;
+  background: url("../assets/images/Scene-24.jpg") no-repeat center center/cover;
+  font-family: "Merriweather Sans", sans-serif;
+  background-attachment: fixed;
+}
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  /* margin-top: 8rem; */
+  width: 100%;
+  min-height: 100vh;
+}
