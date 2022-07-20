@@ -1,6 +1,7 @@
 .Header {
   display: flex;
   align-items: center;
+  z-index: 1;
   width: 100%;
   min-height: 6rem;
 }
@@ -48,37 +49,167 @@
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   flex-direction: column;
 }
 
-.main-homepage .welcome {
-  width: 60%;
-  min-height: 25rem;
+.main-homepage {
+  margin-top: 8rem;
+  color: rgb(16, 74, 47);
+  text-shadow: 2px 1px 4px white;
+  height: 50vh;
   margin-bottom: 2rem;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   border-radius: 2rem;
+}
+.main-homepage h1 {
+  color: white;
+  text-shadow: 2px 2px 3px black;
+}
+.main-homepage .link {
+  text-decoration: none;
+  color: rgb(207, 255, 211);
+  margin: 0rem 1rem;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 20rem;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 2.5rem 0;
+  margin-top: 12rem;
+  background: rgba(165, 192, 192, 0.192);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  border-radius: 1.5rem;
+  box-shadow: #333;
+}
+
+.signup-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 20rem;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 2.5rem 0;
+  background: rgba(165, 192, 192, 0.192);
+  border-radius: 1.5rem;
+  box-shadow: #333;
+}
+.signup-container h1 {
+  color: white;
+}
+.signup-container a {
+  color: white;
+  font-size: 1.1rem;
+  text-decoration: none;
+  font-weight: bold;
+  align-self: flex-start;
+  margin: 0.2rem 1rem;
+  cursor: pointer;
+}
+
+.login-container > h1 {
+  color: white;
+  margin: 0;
+}
+
+form {
+  gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form input {
+  border: none;
+  padding-left: 0.4rem;
+  margin: 0.2rem;
+  border-radius: 0.5rem;
+  width: 14rem;
+  height: 2rem;
+  box-sizing: border-box;
+}
+
+input::-moz-placeholder {
+  color: rgb(144, 143, 143);
+}
+
+input:-ms-input-placeholder {
+  color: rgb(144, 143, 143);
+}
+
+input::placeholder {
+  color: rgb(144, 143, 143);
+}
+
+.login-btn {
+  color: rgb(223, 246, 255);
+  background: rgb(35, 169, 64);
+  height: 2rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  width: 14rem;
+}
+
+.login-btn:hover {
+  background: rgb(90, 90, 123);
+  color: white;
+}
+
+.sign-up-link {
+  margin: 0.3rem 0 0 0;
+}
+
+.sign-up-link a {
+  text-decoration: none;
+  color: rgb(90, 90, 123);
+  font-weight: bold;
+}
+
+.sign-up-link a:hover {
+  color: white;
+}
+
+.login-container hr,
+.signup-container hr {
+  width: 15rem;
+  margin-bottom: 2rem;
 }
 
 .App {
   text-align: center;
   display: flex;
   align-items: center;
-  justify-content: center;
   background: fixed;
   flex-direction: column;
-  background: url("../assets/images/Scene-24.jpg") no-repeat center center/cover;
   font-family: "Merriweather Sans", sans-serif;
-  background-attachment: fixed;
 }
 
 .main-container {
   display: flex;
-  justify-content: center;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
   /* margin-top: 8rem; */
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: url("../assets/images/Scene-24.jpg") no-repeat center center/cover;
 }/*# sourceMappingURL=App.css.map */

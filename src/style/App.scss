@@ -1,23 +1,31 @@
 @import "./header";
 @import "./variables";
 @import "./homepage";
+@import "./loginRegisterStyle";
 
 .App {
   text-align: center;
   display: flex;
   align-items: center;
-  justify-content: center;
+
   background: fixed;
   flex-direction: column;
-  background: url("../assets/images/Scene-24.jpg") no-repeat center center/cover;
+
   font-family: "Merriweather Sans", sans-serif;
-  background-attachment: fixed;
+  // background-attachment: fixed;
 }
 
 .main-container {
   display: flex;
-  justify-content: center;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
   /* margin-top: 8rem; */
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  background: url("../assets/images/Scene-24.jpg") no-repeat center center/cover;
 }
