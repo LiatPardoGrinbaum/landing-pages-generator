@@ -38,7 +38,7 @@ const Header = () => {
               <NavLink to="/login" className="link" exact={true}>
                 My Pages
               </NavLink>
-              <NavLink to="/register" className="link" exact={true}>
+              <NavLink to="/create" className="link" exact={true}>
                 Add Page
               </NavLink>
               <NavLink to="/register" className="link" exact={true} onClick={onClickLogout}>

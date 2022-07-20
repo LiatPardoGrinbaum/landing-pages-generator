@@ -46,6 +46,7 @@
 }
 
 .homepage {
+  max-width: 100%;
   width: 100%;
   display: flex;
   align-items: center;
@@ -54,7 +55,7 @@
 }
 
 .main-homepage {
-  margin-top: 8rem;
+  margin-top: 6rem;
   color: rgb(16, 74, 47);
   text-shadow: 2px 1px 4px white;
   height: 50vh;
@@ -69,11 +70,37 @@
 .main-homepage h1 {
   color: white;
   text-shadow: 2px 2px 3px black;
+  margin-bottom: 1rem;
 }
 .main-homepage .link {
   text-decoration: none;
   color: rgb(207, 255, 211);
   margin: 0rem 1rem;
+}
+.main-homepage button {
+  color: white;
+  background: rgb(87, 182, 63);
+  border: none;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  border-radius: 0.7rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.7rem 1.2rem;
+  font-size: 1.3rem;
+  transition: 0.3s ease-in-out;
+}
+.main-homepage button:hover {
+  background: rgb(81, 124, 70);
+}
+
+.login-register-container {
+  max-width: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .form-container {
@@ -86,12 +113,35 @@
   height: -moz-fit-content;
   height: fit-content;
   padding: 2.5rem 0;
-  margin-top: 12rem;
+  margin-top: 8rem;
   background: rgba(165, 192, 192, 0.192);
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
   border-radius: 1.5rem;
-  box-shadow: #333;
+}
+.form-container form {
+  gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form-container form input {
+  border: none;
+  padding-left: 0.4rem;
+  margin: 0.2rem;
+  border-radius: 0.5rem;
+  width: 14rem;
+  height: 2rem;
+  box-sizing: border-box;
+}
+.form-container input::-moz-placeholder {
+  color: rgb(144, 143, 143);
+}
+.form-container input:-ms-input-placeholder {
+  color: rgb(144, 143, 143);
+}
+.form-container input::placeholder {
+  color: rgb(144, 143, 143);
 }
 
 .signup-container {
@@ -106,7 +156,6 @@
   padding: 2.5rem 0;
   background: rgba(165, 192, 192, 0.192);
   border-radius: 1.5rem;
-  box-shadow: #333;
 }
 .signup-container h1 {
   color: white;
@@ -124,35 +173,6 @@
 .login-container > h1 {
   color: white;
   margin: 0;
-}
-
-form {
-  gap: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-form input {
-  border: none;
-  padding-left: 0.4rem;
-  margin: 0.2rem;
-  border-radius: 0.5rem;
-  width: 14rem;
-  height: 2rem;
-  box-sizing: border-box;
-}
-
-input::-moz-placeholder {
-  color: rgb(144, 143, 143);
-}
-
-input:-ms-input-placeholder {
-  color: rgb(144, 143, 143);
-}
-
-input::placeholder {
-  color: rgb(144, 143, 143);
 }
 
 .login-btn {
@@ -191,6 +211,59 @@ input::placeholder {
   margin-bottom: 2rem;
 }
 
+.createPage {
+  max-width: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.createPage #title {
+  border: none;
+  padding-left: 0.4rem;
+  margin: 0.2rem;
+  border-radius: 0.5rem;
+  width: 30rem;
+  max-width: 100%;
+  height: 2rem;
+  box-sizing: border-box;
+}
+.createPage #title::-moz-placeholder {
+  color: rgb(144, 143, 143);
+}
+.createPage #title:-ms-input-placeholder {
+  color: rgb(144, 143, 143);
+}
+.createPage #title::placeholder {
+  color: rgb(144, 143, 143);
+}
+.createPage h1 {
+  margin-top: 2rem;
+}
+
+.form-create-landing {
+  margin: 2rem 1rem 2rem 1rem;
+  width: 50rem;
+  max-width: 100%;
+  border-radius: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(245, 245, 245, 0.493);
+  padding: 1rem;
+}
+.form-create-landing h1 {
+  margin: 0.5rem 0rem;
+}
+.form-create-landing form {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .App {
   text-align: center;
   display: flex;
@@ -207,9 +280,10 @@ input::placeholder {
   flex-direction: column;
   /* margin-top: 8rem; */
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   position: absolute;
   top: 0;
   left: 0;
   background: url("../assets/images/Scene-24.jpg") no-repeat center center/cover;
+  background-attachment: fixed;
 }/*# sourceMappingURL=App.css.map */

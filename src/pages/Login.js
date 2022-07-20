@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import API from "../Api/API";
 import { Redirect } from "react-router-dom";
 import { MyContext } from "../context/MyContext";
+import Header from "../components/Header";
 
 const Login = () => {
   const { loggedUser, setLoggedUser, setToken, setSpinner } = useContext(MyContext);
@@ -39,34 +40,37 @@ const Login = () => {
   }
 
   return (
-    <div className="form-container">
-      <h1>Login</h1>
-      <hr></hr>
-      {error && <div style={{ color: "red" }}>{error}</div>}
-      <form className="login-form" onSubmit={onHandleSumbit}>
-        <input
-          type="text"
-          id="identifier"
-          placeholder="email or username"
-          onChange={(e) => {
-            setIdentifier(e.target.value);
-          }}
-          value={identifier}
-        />
-        <input
-          type="password"
-          id="password"
-          placeholder="Password"
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-          value={password}
-        />
-        <button className="login-btn">Sign In</button>
-      </form>
-      <p className="sign-up-link">
-        Not a member? <NavLink to="/register">Sign up</NavLink>, it's free.
-      </p>
+    <div className="login-register-container">
+      <Header />
+      <div className="form-container">
+        <h1>Login</h1>
+        <hr></hr>
+        {error && <div style={{ color: "red" }}>{error}</div>}
+        <form className="login-form" onSubmit={onHandleSumbit}>
+          <input
+            type="text"
+            id="identifier"
+            placeholder="email or username"
+            onChange={(e) => {
+              setIdentifier(e.target.value);
+            }}
+            value={identifier}
+          />
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            value={password}
+          />
+          <button className="login-btn">Sign In</button>
+        </form>
+        <p className="sign-up-link">
+          Not a member? <NavLink to="/register">Sign up</NavLink>, it's free.
+        </p>
+      </div>
     </div>
   );
 };

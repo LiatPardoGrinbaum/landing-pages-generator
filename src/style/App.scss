@@ -2,6 +2,7 @@
 @import "./variables";
 @import "./homepage";
 @import "./loginRegisterStyle";
+@import "./create";
 
 .App {
   text-align: center;
@@ -22,10 +23,11 @@
   flex-direction: column;
   /* margin-top: 8rem; */
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   position: absolute;
   top: 0;
   left: 0;
 
   background: url("../assets/images/Scene-24.jpg") no-repeat center center/cover;
+  background-attachment: fixed;
 }

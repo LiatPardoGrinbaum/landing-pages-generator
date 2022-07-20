@@ -3,6 +3,7 @@ import API from "../Api/API";
 import { MyContext } from "../context/MyContext";
 // import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
+import Header from "../components/Header";
 
 const Register = () => {
   const { loggedUser, setLoggedUser, setToken } = useContext(MyContext);
@@ -39,43 +40,46 @@ const Register = () => {
     return <Redirect to="/" />;
   }
   return (
-    <div className="form-container">
-      <h1> Sign Up</h1>
-      <hr></hr>
-      <form onSubmit={onHandleSumbit}>
-        <input
-          type="text"
-          id="username"
-          placeholder="username"
-          value={username}
-          onChange={(e) => {
-            setName(e.target.value);
-          }}
-        />
-        <input
-          type="text"
-          id="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-        />
+    <div className="login-register-container">
+      <Header />
+      <div className="form-container">
+        <h1> Sign Up</h1>
+        <hr></hr>
+        <form onSubmit={onHandleSumbit}>
+          <input
+            type="text"
+            id="username"
+            placeholder="username"
+            value={username}
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
+          />
+          <input
+            type="text"
+            id="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+          />
 
-        <input
-          type="password"
-          id="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        />
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
 
-        <button className="login-btn">Create a new account</button>
-      </form>
+          <button className="login-btn">Create a new account</button>
+        </form>
 
-      {error && <div style={{ color: "red" }}>{error}</div>}
+        {error && <div style={{ color: "red" }}>{error}</div>}
+      </div>
     </div>
   );
 };
