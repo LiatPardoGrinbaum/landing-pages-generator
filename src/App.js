@@ -4,7 +4,9 @@ import Register from "./pages/Register";
 import Homepage from "./pages/Homepage";
 import Create from "./pages/Create";
 import "./style/App.css";
-import Header from "./components/Header";
+// import Header from "./components/Header";
+import MyPages from "./pages/MyPages";
+import LandingPage from "./pages/LandingPage";
 
 function App() {
   return (
@@ -16,8 +18,8 @@ function App() {
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/create" component={Create} />
-            {/* <Route path="/landing/:id" component={Landing} />
-            <Route path="/mypages" component={MyPages} /> */}
+            <Route path="/mypages" component={MyPages} />
+            <Route path="/landing/:id" component={LandingPage} />
           </Switch>
         </div>
       </BrowserRouter>

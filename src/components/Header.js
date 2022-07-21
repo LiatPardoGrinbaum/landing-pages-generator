@@ -35,7 +35,7 @@ const Header = () => {
             </>
           ) : (
             <>
-              <NavLink to="/login" className="link" exact={true}>
+              <NavLink to="/mypages" className="link" exact={true}>
                 My Pages
               </NavLink>
               <NavLink to="/create" className="link" exact={true}>

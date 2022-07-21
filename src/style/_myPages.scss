@@ -1,0 +1,24 @@
+.MyPages {
+  max-width: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+  h1 {
+    margin-bottom: 3rem;
+  }
+}
+.allPages-container {
+  width: 90%;
+  min-height: 15rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  a {
+    text-decoration: none;
+  }
+}

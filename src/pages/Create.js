@@ -4,11 +4,12 @@ import { MyContext } from "../context/MyContext";
 import { Editor } from "@tinymce/tinymce-react";
 import { v4 as uuidv4 } from "uuid";
 import API from "../Api/API";
+import Spinner from "../components/Spinner";
 
-const Create = () => {
+const Create = (props) => {
   const inputRef = useRef(null);
   const editorRef = useRef(null);
-  const { loggedUser, setSpinner } = useContext(MyContext);
+  const { loggedUser, spinner, setSpinner } = useContext(MyContext);
   const [title, setTitle] = useState("");
   const [titleColor, setTitleColor] = useState("");
   const [editorContent, setEditorContent] = useState(null);
@@ -23,7 +24,41 @@ const Create = () => {
     if (loggedUser) {
       setUsername(loggedUser.username);
     }
-  }, [setUsername]);
+    if (imageURL) {
+      const newLanding = {
+        title,
+        titleColor,
+        imageURL,
+        editorContent,
+        contentBackgroundColor,
+        formBackgroundColor,
+        username,
+        uniqid: uuidv4().slice(0, 12),
+      };
+      try {
+        const sendPage = async () => {
+          const response = await API.post(
+            "/landings",
+            { data: newLanding },
+            {
+              headers: {
+                Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
+              },
+            }
+          );
+          setSpinner(false);
+          alert("Your landing page was created successfuly!");
+          props.history.push("/");
+          console.log(response);
+        };
+        sendPage();
+      } catch (err) {
+        console.log(err);
+        setError(err.response.data.error.message);
+        setSpinner(false);
+      }
+    }
+  }, [setUsername, imageURL]);
 
   const onEditorHandleChange = () => {
     if (editorRef.current) {
@@ -37,6 +72,7 @@ const Create = () => {
   const onHandleSumbit = async (e) => {
     setError(null);
     e.preventDefault();
+    setSpinner(true);
     try {
       let formData = new FormData();
       formData.append("files", file);
@@ -47,35 +83,17 @@ const Create = () => {
         },
       });
       setImageURL(data[0].url);
-      const newLanding = {
-        title,
-        titleColor,
-        imageURL,
-        editorContent,
-        contentBackgroundColor,
-        formBackgroundColor,
-        username,
-        uniqid: uuidv4(),
-      };
-      const response = await API.post(
-        "/landings",
-        { data: newLanding },
-        {
-          headers: {
-            Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
-          },
-        }
-      );
-      console.log(response);
     } catch (err) {
       console.log(err);
       setError(err.response.data.error.message);
+      setSpinner(false);
     }
   };
   console.log(editorContent);
   return (
     <div className="createPage">
       <Header />
+
       <h1>Create your new landing page</h1>
       <div className="form-create-landing">
         <form onSubmit={onHandleSumbit}>
@@ -113,10 +131,10 @@ const Create = () => {
           <Editor
             apiKey="lqx3wrfyv0nu50qbedvjdk62xwsgmjfv1qf40bdntzcsdpvd"
             onInit={(evt, editor) => (editorRef.current = editor)}
-            initialValue="<p>This is the initial content of the editor.</p>"
+            initialValue="<p>Write your text here.</p>"
             onEditorChange={onEditorHandleChange}
             init={{
-              height: 400,
+              height: 350,
               menubar: false,
               plugins: [
                 "advlist",
@@ -165,6 +183,7 @@ const Create = () => {
             }}
           />
           {error && <div style={{ color: "red" }}>{error}</div>}
+          {spinner && <Spinner />}
           <button className="createBtn" type="submit">
             Create
           </button>

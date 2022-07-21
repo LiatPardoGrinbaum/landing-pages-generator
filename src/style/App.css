@@ -281,6 +281,51 @@
   background: rgb(81, 124, 70);
 }
 
+.MyPages {
+  max-width: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.MyPages h1 {
+  margin-bottom: 3rem;
+}
+
+.allPages-container {
+  width: 90%;
+  min-height: 15rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.allPages-container a {
+  text-decoration: none;
+}
+
+.pageDiv-container {
+  width: 300px;
+  height: 150px;
+  background: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 2rem;
+}
+.pageDiv-container h3 {
+  color: rgb(16, 74, 47);
+  text-decoration: none;
+  text-shadow: 2px 1px 4px white;
+}
+.pageDiv-container p {
+  color: black;
+  text-shadow: 2px 1px 4px white;
+}
+
 .App {
   text-align: center;
   display: flex;
@@ -303,4 +348,8 @@
   left: 0;
   background: url("../assets/images/Scene-24.jpg") no-repeat center center/cover;
   background-attachment: fixed;
+}
+
+.spinner img {
+  width: 60px;
 }/*# sourceMappingURL=App.css.map */

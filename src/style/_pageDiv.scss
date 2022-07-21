@@ -1,0 +1,19 @@
+.pageDiv-container {
+  width: 300px;
+  height: 150px;
+  background: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 2rem;
+  h3 {
+    color: $primaryColor;
+    text-decoration: none;
+    text-shadow: 2px 1px 4px white;
+  }
+  p {
+    color: black;
+    text-shadow: 2px 1px 4px white;
+  }
+}

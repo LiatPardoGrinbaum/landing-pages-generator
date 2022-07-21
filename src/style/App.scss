@@ -3,6 +3,8 @@
 @import "./homepage";
 @import "./loginRegisterStyle";
 @import "./create";
+@import "./myPages";
+@import "./pageDiv";
 
 .App {
   text-align: center;
@@ -13,6 +15,7 @@
   flex-direction: column;
 
   font-family: "Merriweather Sans", sans-serif;
+
   // background-attachment: fixed;
 }
 
@@ -30,4 +33,20 @@
 
   background: url("../assets/images/Scene-24.jpg") no-repeat center center/cover;
   background-attachment: fixed;
+}
+
+// .spinner {
+//   width: 100%;
+//   min-height: 100%;
+//   z-index: 2;
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   background: rgba(53, 103, 103, 0.559);
+// }
+.spinner img {
+  width: 60px;
 }
