@@ -46,7 +46,6 @@
 }
 
 .homepage {
-  max-width: 100%;
   width: 100%;
   display: flex;
   align-items: center;
@@ -282,7 +281,6 @@
 }
 
 .MyPages {
-  max-width: 100%;
   width: 100%;
   display: flex;
   align-items: center;
@@ -395,6 +393,55 @@
 .form-contacts form label {
   margin-left: 0.3rem;
   text-shadow: 2px 1px 4px white;
+}
+
+.contacts-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.contacts-container h1 {
+  margin-bottom: 1rem;
+}
+.contacts-container a {
+  text-decoration: none;
+}
+.contacts-container span {
+  color: rgb(150, 211, 150);
+  text-shadow: 2px 1px 3px black;
+}
+
+.contacts-table {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: rgb(250, 245, 236);
+  border-top: 1px solid grey;
+  border-left: 1px solid grey;
+  margin-top: 2rem;
+}
+
+.contact-row,
+.contact-first-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+.contact-row div,
+.contact-first-row div {
+  width: 30%;
+  min-width: 120px;
+  border-right: 1px solid grey;
+  border-bottom: 1px solid grey;
+}
+
+.contact-first-row {
+  font-weight: bold;
 }
 
 .App {

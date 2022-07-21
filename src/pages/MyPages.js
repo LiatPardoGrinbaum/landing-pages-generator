@@ -17,11 +17,7 @@ const MyPages = () => {
       setSpinner(true);
       try {
         const getData = async () => {
-          const { data } = await API.get(`/landings?filters[username]=${username}`, {
-            headers: {
-              Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
-            },
-          });
+          const { data } = await API.get(`/landings?filters[username]=${username}`);
           setMyPages(data.data);
           setSpinner(false);
         };

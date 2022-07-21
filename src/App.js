@@ -7,6 +7,7 @@ import "./style/App.css";
 // import Header from "./components/Header";
 import MyPages from "./pages/MyPages";
 import LandingPage from "./pages/LandingPage";
+import ContactsPage from "./pages/ContactsPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/create" component={Create} />
             <Route path="/mypages" component={MyPages} />
             <Route path="/landing/:id" component={LandingPage} />
+            <Route path="/contacts/landing/:id" component={ContactsPage} />
           </Switch>
         </div>
       </BrowserRouter>

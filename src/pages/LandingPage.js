@@ -19,11 +19,7 @@ const LandingPage = () => {
     setError(null);
     try {
       const getData = async () => {
-        const { data } = await API.get(`/landings?filters[uniqid]=${location.split("/landing/")[1]}`, {
-          headers: {
-            Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
-          },
-        });
+        const { data } = await API.get(`/landings?filters[id]=${location.split("/landing/")[1]}`);
         setLandingData(data.data[0].attributes);
         setSpinner(false);
       };
@@ -64,9 +60,7 @@ const LandingPage = () => {
 
       <section className="section-middle" style={{ backgroundColor: landingData.contentBackgroundColor }}>
         {" "}
-        {Object.keys(landingData).length !== 0 && (
-          <div dangerouslySetInnerHTML={{ __html: landingData.editorContent }} />
-        )}
+        <div dangerouslySetInnerHTML={{ __html: landingData.editorContent }} />
       </section>
       <section className="section-bottom" style={{ backgroundColor: landingData.formBackgroundColor }}>
         <div className="form-contacts">

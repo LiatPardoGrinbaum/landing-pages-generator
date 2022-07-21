@@ -8,14 +8,16 @@ const PageDiv = ({ page }) => {
       <Link
         target="_blank"
         to={{
-          pathname: `/landing/${page.attributes.uniqid}`,
-          state: page,
+          pathname: `/landing/${page.id}`,
         }}>
         {" "}
         <h3 className="link-enter"> ENTER</h3>
       </Link>
-      <h3>contacts</h3>
+      <Link to={{ pathname: `/contacts/landing/${page.id}`, state: page }}>
+        <h3>contacts</h3>
+      </Link>
       <div>
+        {/*//! need to add: delete + update */}
         <p>created </p>
         <p> {new Date(page.attributes.createdAt).toLocaleString()}</p>
       </div>
