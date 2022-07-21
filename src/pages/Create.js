@@ -16,7 +16,7 @@ const Create = (props) => {
   const [contentBackgroundColor, setContentBackgroundColor] = useState("");
   const [username, setUsername] = useState("");
   const [file, setFile] = useState(null);
-  const [imageURL, setImageURL] = useState("");
+  // const [imageURL, setImageURL] = useState("");
   const [formBackgroundColor, setFormBackgroundColor] = useState("");
   const [error, setError] = useState(null);
 
@@ -24,41 +24,7 @@ const Create = (props) => {
     if (loggedUser) {
       setUsername(loggedUser.username);
     }
-    if (imageURL) {
-      const newLanding = {
-        title,
-        titleColor,
-        imageURL,
-        editorContent,
-        contentBackgroundColor,
-        formBackgroundColor,
-        username,
-        uniqid: uuidv4().slice(0, 12),
-      };
-      try {
-        const sendPage = async () => {
-          const response = await API.post(
-            "/landings",
-            { data: newLanding },
-            {
-              headers: {
-                Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
-              },
-            }
-          );
-          setSpinner(false);
-          alert("Your landing page was created successfuly!");
-          props.history.push("/");
-          console.log(response);
-        };
-        sendPage();
-      } catch (err) {
-        console.log(err);
-        setError(err.response.data.error.message);
-        setSpinner(false);
-      }
-    }
-  }, [setUsername, imageURL]);
+  }, [setUsername, loggedUser]);
 
   const onEditorHandleChange = () => {
     if (editorRef.current) {
@@ -83,7 +49,30 @@ const Create = (props) => {
           Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
         },
       });
-      setImageURL(data[0].url);
+      // setImageURL(data[0].url);
+      const newLanding = {
+        title,
+        titleColor,
+        imageURL: data[0].url,
+        editorContent,
+        contentBackgroundColor,
+        formBackgroundColor,
+        username,
+        uniqid: uuidv4().slice(0, 12),
+      };
+      const response = await API.post(
+        "/landings",
+        { data: newLanding },
+        {
+          headers: {
+            Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
+          },
+        }
+      );
+      setSpinner(false);
+      alert("Your landing page was created successfuly!");
+      props.history.push("/");
+      console.log(response);
     } catch (err) {
       console.log(err);
       setError(err.response.data.error.message);

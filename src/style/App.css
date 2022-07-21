@@ -323,11 +323,13 @@
   color: black;
   text-shadow: 2px 1px 4px white;
 }
-.pageDiv-container .link-enter {
+.pageDiv-container .link-enter,
+.pageDiv-container .link-contacts {
   font-size: 1.3rem;
   color: rgb(3, 176, 3);
 }
-.pageDiv-container .link-enter:hover {
+.pageDiv-container .link-enter:hover,
+.pageDiv-container .link-contacts:hover {
   color: grey;
 }
 

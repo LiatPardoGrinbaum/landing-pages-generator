@@ -2,6 +2,7 @@ import Header from "../components/Header";
 import { Link } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import { MyContext } from "../context/MyContext";
+import Spinner from "../components/Spinner";
 import API from "../Api/API";
 
 const ContactsPage = (props) => {
@@ -33,7 +34,7 @@ const ContactsPage = (props) => {
       console.log(err);
       setError(err.response.data.error.message);
     }
-  }, []);
+  }, [location, setSpinner]);
   // console.log(props.match.params.id);
 
   const insertContacts = () => {
@@ -52,6 +53,8 @@ const ContactsPage = (props) => {
     <div className="contacts-container">
       <Header />
       <h1>Page's Contacts</h1>
+      {error && <div style={{ color: "red" }}>{error}</div>}
+      {spinner && <Spinner />}
       <h3>Page name:</h3>
 
       <Link

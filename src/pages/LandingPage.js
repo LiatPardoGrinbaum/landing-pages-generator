@@ -4,7 +4,7 @@ import API from "../Api/API";
 import Spinner from "../components/Spinner";
 
 const LandingPage = () => {
-  const { loggedUser, spinner, setSpinner } = useContext(MyContext);
+  const { spinner, setSpinner } = useContext(MyContext);
   const location = document.URL;
   console.log(location.split("/landing/")[1]);
   const [landingData, setLandingData] = useState({});
@@ -28,7 +28,7 @@ const LandingPage = () => {
       console.log(err);
       setError(err.response.data.error.message);
     }
-  }, []);
+  }, [location, setSpinner]);
 
   const onHandleSumbit = async (e) => {
     e.preventDefault();

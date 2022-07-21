@@ -4,7 +4,6 @@ import API from "../Api/API";
 import { MyContext } from "../context/MyContext";
 import PageDiv from "../components/PageDiv";
 import Spinner from "../components/Spinner";
-import { Link } from "react-router-dom";
 
 const MyPages = () => {
   const { loggedUser, spinner, setSpinner } = useContext(MyContext);
@@ -52,6 +51,7 @@ const MyPages = () => {
     <div className="MyPages">
       <Header />
       <h1>My pages</h1>
+      {error && <div style={{ color: "red" }}>{error}</div>}
       {spinner && <Spinner />}
       {!spinner && <div className="allPages-container">{insertPages()}</div>}
     </div>

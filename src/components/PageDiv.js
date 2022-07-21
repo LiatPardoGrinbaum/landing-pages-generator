@@ -14,7 +14,7 @@ const PageDiv = ({ page }) => {
         <h3 className="link-enter"> ENTER</h3>
       </Link>
       <Link to={{ pathname: `/contacts/landing/${page.id}`, state: page }}>
-        <h3>contacts</h3>
+        <h3 className="link-contacts">contacts</h3>
       </Link>
       <div>
         {/*//! need to add: delete + update */}

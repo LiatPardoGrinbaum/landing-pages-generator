@@ -1,7 +1,6 @@
 import { NavLink, useLocation } from "react-router-dom";
 import { MyContext } from "../context/MyContext";
 import { useContext } from "react";
-import { Redirect } from "react-router-dom";
 
 const Header = () => {
   const { loggedUser, setLoggedUser } = useContext(MyContext);
