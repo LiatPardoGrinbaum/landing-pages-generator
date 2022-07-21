@@ -250,7 +250,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgba(245, 245, 245, 0.493);
+  background: rgba(245, 245, 245, 0.77);
   padding: 1rem;
 }
 .form-create-landing h1 {
@@ -262,6 +262,23 @@
   justify-content: center;
   flex-direction: column;
   gap: 0.5rem;
+}
+.form-create-landing form button {
+  align-self: center;
+  color: white;
+  background: rgb(87, 182, 63);
+  border: none;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  border-radius: 0.7rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  transition: 0.3s ease-in-out;
+}
+.form-create-landing form button:hover {
+  background: rgb(81, 124, 70);
 }
 
 .App {
