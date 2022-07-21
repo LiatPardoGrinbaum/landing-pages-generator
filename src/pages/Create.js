@@ -2,6 +2,8 @@ import Header from "../components/Header";
 import { useContext, useState, useRef, useEffect } from "react";
 import { MyContext } from "../context/MyContext";
 import { Editor } from "@tinymce/tinymce-react";
+import { v4 as uuidv4 } from "uuid";
+import API from "../Api/API";
 
 const Create = () => {
   const inputRef = useRef(null);
@@ -13,7 +15,9 @@ const Create = () => {
   const [contentBackgroundColor, setContentBackgroundColor] = useState("");
   const [username, setUsername] = useState("");
   const [file, setFile] = useState(null);
+  const [imageURL, setImageURL] = useState("");
   const [formBackgroundColor, setFormBackgroundColor] = useState("");
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (loggedUser) {
@@ -30,7 +34,44 @@ const Create = () => {
   // const onEditorHandleChange = (content, editor) => {
   //   setEditorContent(content);
   // };
-  const onHandleSumbit = () => {};
+  const onHandleSumbit = async (e) => {
+    setError(null);
+    e.preventDefault();
+    try {
+      let formData = new FormData();
+      formData.append("files", file);
+      const { data } = await API.post("/upload", formData, {
+        headers: {
+          "content-type": "multipart/form-data",
+          Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
+        },
+      });
+      setImageURL(data[0].url);
+      const newLanding = {
+        title,
+        titleColor,
+        imageURL,
+        editorContent,
+        contentBackgroundColor,
+        formBackgroundColor,
+        username,
+        uniqid: uuidv4(),
+      };
+      const response = await API.post(
+        "/landings",
+        { data: newLanding },
+        {
+          headers: {
+            Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
+          },
+        }
+      );
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+      setError(err.response.data.error.message);
+    }
+  };
   console.log(editorContent);
   return (
     <div className="createPage">
@@ -123,6 +164,7 @@ const Create = () => {
               setFormBackgroundColor(e.target.value);
             }}
           />
+          {error && <div style={{ color: "red" }}>{error}</div>}
           <button className="createBtn" type="submit">
             Create
           </button>
