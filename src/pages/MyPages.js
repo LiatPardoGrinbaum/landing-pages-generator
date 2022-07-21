@@ -11,6 +11,7 @@ const MyPages = () => {
   const [myPages, setMyPages] = useState([]);
   const [error, setError] = useState(null);
   useEffect(() => {
+    setError(null);
     if (loggedUser) {
       let username = loggedUser.username;
       setSpinner(true);
@@ -38,14 +39,15 @@ const MyPages = () => {
       console.log("page", page);
       return (
         <React.Fragment key={id}>
-          <Link
+          {/*  <Link
+            target="_blank"
             to={{
               pathname: `/landing/${page.attributes.uniqid}`,
-              state: page,
             }}>
             {" "}
             <PageDiv page={page} />
-          </Link>
+          </Link> */}
+          <PageDiv page={page} />
         </React.Fragment>
       );
     });

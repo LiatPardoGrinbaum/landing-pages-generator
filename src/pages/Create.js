@@ -63,6 +63,7 @@ const Create = (props) => {
   const onEditorHandleChange = () => {
     if (editorRef.current) {
       setEditorContent(editorRef.current.getContent());
+      // console.log(typeof editorRef.current.getContent());
     }
   };
   //another way to get the same outout:

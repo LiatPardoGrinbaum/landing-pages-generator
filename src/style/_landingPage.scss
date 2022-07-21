@@ -1,0 +1,61 @@
+.landingPage-container {
+  width: 100%;
+  height: auto;
+}
+
+.section-top {
+  width: 100%;
+  height: 50vh;
+  background: no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h1 {
+    font-size: 3rem;
+  }
+}
+.section-middle {
+  width: 100%;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.section-bottom {
+  width: 100%;
+  min-height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form-contacts {
+  background: rgba(255, 255, 255, 0.449);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  h1 {
+    margin: 1rem;
+    text-shadow: 2px 1px 4px white;
+  }
+
+  form {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    input {
+      border: none;
+      padding-left: 0.4rem;
+      margin: 0.2rem 0rem 0.7rem 0rem;
+      border-radius: 0.5rem;
+      width: 20rem;
+      max-width: 100%;
+      height: 2rem;
+      box-sizing: border-box;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+    label {
+      margin-left: 0.3rem;
+      text-shadow: 2px 1px 4px white;
+    }
+  }
+}
