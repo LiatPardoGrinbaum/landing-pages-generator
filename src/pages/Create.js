@@ -60,7 +60,7 @@ const Create = (props) => {
         username,
         uniqid: uuidv4().slice(0, 12),
       };
-      const response = await API.post(
+      await API.post(
         "/landings",
         { data: newLanding },
         {
