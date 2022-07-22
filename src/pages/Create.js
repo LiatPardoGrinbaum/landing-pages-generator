@@ -72,14 +72,13 @@ const Create = (props) => {
       setSpinner(false);
       alert("Your landing page was created successfuly!");
       props.history.push("/");
-      console.log(response);
     } catch (err) {
       console.log(err);
       setError(err.response.data.error.message);
       setSpinner(false);
     }
   };
-  console.log(editorContent);
+
   return (
     <div className="createPage">
       <Header />

@@ -33,6 +33,7 @@ const ContactsPage = (props) => {
     } catch (err) {
       console.log(err);
       setError(err.response.data.error.message);
+      setSpinner(false);
     }
   }, [location, setSpinner]);
   // console.log(props.match.params.id);
