@@ -19,6 +19,7 @@ const Homepage = () => {
           <>
             {" "}
             <h1>Great, you're in!</h1>
+            <h2>{`Welcome, ${loggedUser.username}`}</h2>
             <h2>Let's start creating your desired page.</h2>
             <Link to="/create">
               <button>Create a new landing page</button>

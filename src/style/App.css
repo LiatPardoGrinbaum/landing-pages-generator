@@ -218,7 +218,8 @@
   justify-content: center;
   flex-direction: column;
 }
-.createPage #title {
+.createPage #title,
+.createPage #shortDesc {
   border: none;
   padding-left: 0.4rem;
   margin: 0.2rem;
@@ -348,6 +349,7 @@
 }
 .section-top h1 {
   font-size: 3rem;
+  font-family: "Cinzel", serif;
 }
 
 .section-middle {

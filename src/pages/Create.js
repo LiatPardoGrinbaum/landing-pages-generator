@@ -10,6 +10,7 @@ const Create = (props) => {
   const inputRef = useRef(null);
   const editorRef = useRef(null);
   const { loggedUser, spinner, setSpinner } = useContext(MyContext);
+  const [shortDesc, setShortDesc] = useState("");
   const [title, setTitle] = useState("");
   const [titleColor, setTitleColor] = useState("");
   const [editorContent, setEditorContent] = useState(null);
@@ -51,6 +52,7 @@ const Create = (props) => {
       });
       // setImageURL(data[0].url);
       const newLanding = {
+        shortDesc,
         title,
         titleColor,
         imageURL: data[0].url,
@@ -71,14 +73,14 @@ const Create = (props) => {
       );
       setSpinner(false);
       alert("Your landing page was created successfuly!");
-      props.history.push("/");
+      props.history.push("/mypages");
     } catch (err) {
       console.log(err);
       setError(err.response.data.error.message);
       setSpinner(false);
     }
   };
-
+  console.log("username", username);
   return (
     <div className="createPage">
       <Header />
@@ -86,7 +88,17 @@ const Create = (props) => {
       <h1>Create your new landing page</h1>
       <div className="form-create-landing">
         <form onSubmit={onHandleSumbit}>
-          <label htmlFor="title">Enter main page title:</label>
+          <label htmlFor="shortDesc">Enter a short title description (won't be shown on page):</label>
+          <input
+            type="text"
+            id="shortDesc"
+            placeholder="short description"
+            value={shortDesc}
+            onChange={(e) => {
+              setShortDesc(e.target.value);
+            }}
+          />
+          <label htmlFor="title">Enter the main page title:</label>
           <input
             type="text"
             id="title"

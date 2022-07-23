@@ -4,7 +4,7 @@ const PageDiv = ({ page }) => {
     <div
       className="pageDiv-container"
       style={{ backgroundImage: `url(${page.attributes.imageURL})`, backgroundSize: "cover" }}>
-      <h3>{page.attributes.title}</h3>
+      <h3>{page.attributes.shortDesc}</h3>
       <Link
         target="_blank"
         to={{

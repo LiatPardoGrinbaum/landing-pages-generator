@@ -65,7 +65,7 @@ const ContactsPage = (props) => {
         }}>
         {Object.keys(landingData).length !== 0 && (
           <h3>
-            <span>{landingData.attributes.title}</span>
+            <span>{landingData.attributes.shortDesc}</span>
           </h3>
         )}
       </Link>

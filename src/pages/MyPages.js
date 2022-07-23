@@ -28,10 +28,9 @@ const MyPages = () => {
       }
     }
   }, [loggedUser, setSpinner]);
-  console.log("myPages", myPages);
+
   const insertPages = () => {
     return myPages.map((page, id) => {
-      console.log("page", page);
       return (
         <React.Fragment key={id}>
           {/*  <Link

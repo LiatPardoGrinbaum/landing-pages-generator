@@ -27,8 +27,8 @@ const Register = () => {
       setName("");
       setPassword("");
       localStorage.setItem("token", JSON.stringify(data.jwt));
-      localStorage.setItem("user", JSON.stringify(data));
-      setLoggedUser(data);
+      localStorage.setItem("user", JSON.stringify(data.user));
+      setLoggedUser(data.user);
       setToken(data.jwt);
     } catch (err) {
       console.log(err);
@@ -36,7 +36,6 @@ const Register = () => {
     }
   };
   if (loggedUser) {
-    console.log(loggedUser);
     return <Redirect to="/" />;
   }
   return (
