@@ -27,7 +27,7 @@ const JobPageDemo = () => {
         <div className="jobPageDemo-middle-inner">
           <div
             className="jobPageDemo-content"
-            style={{ color: "darkblue", boxShadow: " rgba(0, 0, 0, 0.24) 0px 3px 8px" }}>
+            style={{ color: "darkblue", boxShadow: " rgba(0, 0, 0, 0.24) 0px 3px 8px", backgroundColor: "white" }}>
             {/* here will be the text from the editor */}
             <h2 style={{ textAlign: "center" }}>Full Stack Developer</h2>
             <p>
@@ -71,7 +71,7 @@ const JobPageDemo = () => {
                     setName(e.target.value);
                   }}
                 />
-                <label htmlFor="number">Number of guests:</label>
+                <label htmlFor="number">Email:</label>
                 <input
                   type="number"
                   id="number"

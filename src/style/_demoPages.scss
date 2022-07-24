@@ -17,13 +17,13 @@
   h1 {
     font-size: 3rem;
     padding: 0.5rem;
-    background: rgba(229, 229, 229, 0.584);
+    background: rgba(255, 249, 249, 0.484);
     width: 100%;
     font-family: "Cinzel", serif;
     color: rgb(123, 76, 76);
   }
   h2 {
-    background: rgba(229, 229, 229, 0.584);
+    background: rgba(255, 249, 249, 0.484);
     width: 100%;
     padding: 0.5rem;
   }
@@ -157,4 +157,51 @@
   align-items: center;
   width: 100%;
   min-height: 10vh;
+}
+
+//** Product page demo **//
+.productPageDemo-top {
+  width: 100%;
+  height: 40vh;
+  background: url("../assets/images/coffeeproduct.jpg") no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 0.5rem;
+    background: rgba(229, 229, 229, 0.584);
+    width: 100%;
+    font-family: "Cinzel", serif;
+    color: rgb(81, 51, 51);
+  }
+  h2 {
+    background: rgba(229, 229, 229, 0.584);
+    width: 100%;
+    padding: 0.5rem;
+  }
+}
+
+.productPageDemo-middle {
+  width: 100%;
+  min-height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 2rem;
+  .productPageDemo-middle-inner {
+    width: 75%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .productPageDemo-content {
+    width: 35rem;
+  }
 }

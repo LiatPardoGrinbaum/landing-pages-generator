@@ -40,7 +40,7 @@ const EventPageDemo = () => {
         </div>
       </section>
       <section className="EventPageDemo-bottom" style={{ backgroundColor: " rgb(181, 225, 223)" }}>
-        <div className="demoform-contacts">
+        <div className="demoform-contacts" style={{ backgroundColor: " rgba(255, 255, 255, 0.449)" }}>
           <h1>Contact us</h1>
           <form onSubmit={onHandleSumbit}>
             <label htmlFor="name">Full name:</label>

@@ -16,6 +16,10 @@ const Create = (props) => {
   const [eventDate, setEventDate] = useState("");
   const [title, setTitle] = useState("");
   const [titleColor, setTitleColor] = useState("");
+  const [subTitle, setSubTitle] = useState("");
+  const [subTitleColor, setSubTitleColor] = useState("");
+  const [contentFile, setContentFile] = useState(null);
+  const [ContentFilePreview, setContentFilePreview] = useState(null);
   const [editorContent, setEditorContent] = useState(null);
   const [contentBackgroundColor, setContentBackgroundColor] = useState("");
   const [username, setUsername] = useState("");
@@ -85,7 +89,6 @@ const Create = (props) => {
     }
   };
 
-  console.log(eventDate);
   return (
     <div className="createPage">
       <Header />
@@ -170,6 +173,34 @@ const Create = (props) => {
                 setTitleColor(e.target.value);
               }}
             />
+            <label htmlFor="subtitle">Enter sub title:</label>
+            <input
+              type="text"
+              id="subtitle"
+              placeholder="subtitle"
+              value={subTitle}
+              onChange={(e) => {
+                setSubTitle(e.target.value);
+              }}
+            />
+            <label htmlFor="subtitlecolor">Select a color for the sub-title:</label>
+            <input
+              type="color"
+              id="subtitlecolor"
+              value={subTitleColor}
+              onChange={(e) => {
+                setSubTitleColor(e.target.value);
+              }}
+            />
+            <label htmlFor="subtitlecolor">Select a color for the sub-title:</label>
+            <input
+              type="color"
+              id="subtitlecolor"
+              value={subTitleColor}
+              onChange={(e) => {
+                setSubTitleColor(e.target.value);
+              }}
+            />
             <label htmlFor="image">Upload a background image:</label>
             <input
               ref={inputRef}
@@ -179,6 +210,18 @@ const Create = (props) => {
               onChange={(e) => {
                 setFile(e.target.files[0]);
                 setFilePreview(URL.createObjectURL(e.target.files[0]));
+                // e.target.value = null;
+              }}
+            />
+            <label htmlFor="contentimage">Upload Image for content section:</label>
+            <input
+              ref={inputRef}
+              type="file"
+              label="Upload Image for content section (optional):"
+              id="contentimage"
+              onChange={(e) => {
+                setContentFile(e.target.files[0]);
+                setContentFilePreview(URL.createObjectURL(e.target.files[0]));
                 // e.target.value = null;
               }}
             />
@@ -237,6 +280,7 @@ const Create = (props) => {
                 setFormBackgroundColor(e.target.value);
               }}
             />
+            <label htmlFor="contacts-fields">Select contact form fields:</label>
             {error && <div style={{ color: "red" }}>{error}</div>}
             {spinner && <Spinner />}
             <button className="createBtn" type="submit">
@@ -244,7 +288,18 @@ const Create = (props) => {
             </button>
           </form>
         </div>
-        <Preview shortDesc={shortDesc} image={filePreview} />
+        <Preview
+          title={title}
+          image={filePreview}
+          template={template}
+          subTitle={subTitle}
+          titleColor={titleColor}
+          subTitleColor={subTitleColor}
+          editorContent={editorContent}
+          contentImage={ContentFilePreview}
+          contentBackgroundColor={contentBackgroundColor}
+          formBackgroundColor={formBackgroundColor}
+        />
       </div>
     </div>
   );

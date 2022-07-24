@@ -10,6 +10,7 @@ import LandingPage from "./pages/LandingPage";
 import ContactsPage from "./pages/ContactsPage";
 import EventPageDemo from "./pages/EventPageDemo";
 import JobPageDemo from "./pages/JobPageDemo";
+import ProductPageDemo from "./pages/ProductPageDemo";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/contacts/landing/:id" component={ContactsPage} />
             <Route path="/eventpagedemo" component={EventPageDemo} />
             <Route path="/jobpagedemo" component={JobPageDemo} />
+            <Route path="/productpagedemo" component={ProductPageDemo} />
           </Switch>
         </div>
       </BrowserRouter>

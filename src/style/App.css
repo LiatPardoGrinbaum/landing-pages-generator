@@ -222,7 +222,8 @@
   flex-direction: column;
 }
 .createPage #title,
-.createPage #shortDesc {
+.createPage #shortDesc,
+.createPage #subtitle {
   border: none;
   padding-left: 0.4rem;
   margin: 0.2rem;
@@ -297,15 +298,6 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-}
-
-.landing-preview {
-  width: 400px;
-  height: 500px;
-  background: rgba(245, 245, 245, 0.77);
-  align-self: flex-start;
-  margin: 2rem 1rem 2rem 1rem;
-  border-radius: 3rem;
 }
 
 .MyPages {
@@ -492,13 +484,13 @@
 .EventPageDemo-top h1 {
   font-size: 3rem;
   padding: 0.5rem;
-  background: rgba(229, 229, 229, 0.584);
+  background: rgba(255, 249, 249, 0.484);
   width: 100%;
   font-family: "Cinzel", serif;
   color: rgb(123, 76, 76);
 }
 .EventPageDemo-top h2 {
-  background: rgba(229, 229, 229, 0.584);
+  background: rgba(255, 249, 249, 0.484);
   width: 100%;
   padding: 0.5rem;
 }
@@ -628,6 +620,110 @@
   align-items: center;
   width: 100%;
   min-height: 10vh;
+}
+
+.productPageDemo-top {
+  width: 100%;
+  height: 40vh;
+  background: url("../assets/images/coffeeproduct.jpg") no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.productPageDemo-top h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 0.5rem;
+  background: rgba(229, 229, 229, 0.584);
+  width: 100%;
+  font-family: "Cinzel", serif;
+  color: rgb(81, 51, 51);
+}
+.productPageDemo-top h2 {
+  background: rgba(229, 229, 229, 0.584);
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.productPageDemo-middle {
+  width: 100%;
+  min-height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 2rem;
+}
+.productPageDemo-middle .productPageDemo-middle-inner {
+  width: 75%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.productPageDemo-middle .productPageDemo-content {
+  width: 35rem;
+}
+
+.landing-preview {
+  width: 400px;
+  height: 600px;
+  background: rgba(245, 245, 245, 0.77);
+  align-self: flex-start;
+  margin: 2rem 1rem 2rem 1rem;
+  border-radius: 3rem;
+}
+
+.preview-top {
+  width: 100%;
+  height: 180px;
+  margin-top: 1rem;
+  background: no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.preview-middle {
+  width: 100%;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.preview-middle .preview-middle-inner {
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.preview-middle .preview-middle-inner h1 {
+  font-size: 0.8rem;
+  margin: 0;
+}
+.preview-middle .preview-middle-inner h2 {
+  font-size: 0.6rem;
+}
+
+.preview-bottom {
+  width: 100%;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.preview-bottom .preview-contact-form {
+  width: 25%;
+  height: 102px;
+  background: rgba(255, 255, 255, 0.478);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: grey;
 }
 
 .App {
