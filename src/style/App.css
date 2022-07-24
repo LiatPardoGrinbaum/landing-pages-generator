@@ -44,6 +44,9 @@
   color: white;
   border-bottom: 1px solid rgb(207, 255, 211);
 }
+.navbar-link a.active {
+  border-bottom: 1px solid rgb(207, 255, 211);
+}
 
 .homepage {
   width: 100%;
@@ -242,6 +245,16 @@
   margin-top: 2rem;
 }
 
+.create-container {
+  max-width: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
 .form-create-landing {
   margin: 2rem 1rem 2rem 1rem;
   width: 50rem;
@@ -279,6 +292,20 @@
 }
 .form-create-landing form button:hover {
   background: rgb(81, 124, 70);
+}
+.form-create-landing form .radio-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.landing-preview {
+  width: 400px;
+  height: 500px;
+  background: rgba(245, 245, 245, 0.77);
+  align-self: flex-start;
+  margin: 2rem 1rem 2rem 1rem;
+  border-radius: 3rem;
 }
 
 .MyPages {
@@ -446,6 +473,161 @@
 
 .contact-first-row {
   font-weight: bold;
+}
+
+.demoPage-container {
+  width: 100%;
+  height: auto;
+}
+
+.EventPageDemo-top {
+  width: 100%;
+  height: 100vh;
+  background: url("../assets/images/weddingdemo1.jpeg") no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.EventPageDemo-top h1 {
+  font-size: 3rem;
+  padding: 0.5rem;
+  background: rgba(229, 229, 229, 0.584);
+  width: 100%;
+  font-family: "Cinzel", serif;
+  color: rgb(123, 76, 76);
+}
+.EventPageDemo-top h2 {
+  background: rgba(229, 229, 229, 0.584);
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.EventPageDemo-middle {
+  width: 100%;
+  min-height: 60vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 2rem;
+}
+.EventPageDemo-middle .EventPageDemo-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.EventPageDemo-middle .EventPageDemo-content h1 {
+  font-size: 2rem;
+  color: rgb(180, 100, 100);
+}
+.EventPageDemo-middle .EventPageDemo-content h2 {
+  color: rgb(102, 52, 48);
+}
+.EventPageDemo-middle .EventPageDemo-content h3 {
+  color: rgb(131, 32, 50);
+}
+
+.EventPageDemo-bottom {
+  width: 100%;
+  min-height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.demoform-contacts {
+  padding: 1rem;
+  border-radius: 1rem;
+}
+.demoform-contacts h1 {
+  margin: 1rem;
+  text-shadow: 2px 1px 4px white;
+}
+.demoform-contacts form {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.demoform-contacts form input {
+  border: none;
+  padding-left: 0.4rem;
+  margin: 0.2rem 0rem 0.7rem 0rem;
+  border-radius: 0.5rem;
+  width: 20rem;
+  max-width: 100%;
+  height: 2rem;
+  box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.demoform-contacts form label {
+  margin-left: 0.3rem;
+  text-shadow: 2px 1px 4px white;
+}
+.demoform-contacts form #note {
+  padding: 0.2rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  border: none;
+}
+.demoform-contacts form button {
+  align-self: center;
+  margin: 0.5rem 0rem;
+  padding: 0.2rem 0.8rem;
+  border-radius: 0.5rem;
+  border: 1px grey solid;
+}
+
+.JobPageDemo-top {
+  width: 100%;
+  min-height: 15vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.JobPageDemo-top .jobOffer-h1 {
+  font-size: 3rem;
+  padding: 0.5rem;
+  font-family: "Cinzel", serif;
+  color: white;
+}
+
+.jobPageDemo-middle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 75vh;
+}
+
+.jobPageDemo-middle-inner {
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 2rem 0rem;
+}
+.jobPageDemo-middle-inner .jobPageDemo-content {
+  padding: 0.5rem;
+  width: 32rem;
+  height: 28rem;
+  overflow-y: auto;
+  text-align: left;
+}
+
+.jobPageDemo-bottom {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  min-height: 10vh;
 }
 
 .App {

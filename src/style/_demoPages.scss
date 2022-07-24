@@ -1,0 +1,160 @@
+.demoPage-container {
+  width: 100%;
+  height: auto;
+}
+
+//**event page demo **//
+
+.EventPageDemo-top {
+  width: 100%;
+  height: 100vh;
+  background: url("../assets/images/weddingdemo1.jpeg") no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  h1 {
+    font-size: 3rem;
+    padding: 0.5rem;
+    background: rgba(229, 229, 229, 0.584);
+    width: 100%;
+    font-family: "Cinzel", serif;
+    color: rgb(123, 76, 76);
+  }
+  h2 {
+    background: rgba(229, 229, 229, 0.584);
+    width: 100%;
+    padding: 0.5rem;
+  }
+}
+
+.EventPageDemo-middle {
+  width: 100%;
+  min-height: 60vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 2rem;
+  .EventPageDemo-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    gap: 1.2rem;
+
+    h1 {
+      font-size: 2rem;
+      color: rgb(180, 100, 100);
+    }
+    h2 {
+      color: rgb(102, 52, 48);
+    }
+    h3 {
+      color: rgb(131, 32, 50);
+    }
+  }
+}
+
+.EventPageDemo-bottom {
+  width: 100%;
+  min-height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.demoform-contacts {
+  padding: 1rem;
+  border-radius: 1rem;
+  h1 {
+    margin: 1rem;
+    text-shadow: 2px 1px 4px white;
+  }
+  form {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    input {
+      border: none;
+      padding-left: 0.4rem;
+      margin: 0.2rem 0rem 0.7rem 0rem;
+      border-radius: 0.5rem;
+      width: 20rem;
+      max-width: 100%;
+      height: 2rem;
+      box-sizing: border-box;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+    label {
+      margin-left: 0.3rem;
+      text-shadow: 2px 1px 4px white;
+    }
+    #note {
+      padding: 0.2rem;
+      border-radius: 0.5rem;
+      width: 100%;
+      border: none;
+    }
+    button {
+      align-self: center;
+      margin: 0.5rem 0rem;
+      padding: 0.2rem 0.8rem;
+      border-radius: 0.5rem;
+      border: 1px grey solid;
+    }
+  }
+}
+
+//**Job page demo**//
+
+.JobPageDemo-top {
+  width: 100%;
+  min-height: 15vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .jobOffer-h1 {
+    font-size: 3rem;
+    padding: 0.5rem;
+    // background: rgba(229, 229, 229, 0.584);
+    // width: 100%;
+    font-family: "Cinzel", serif;
+    color: white;
+  }
+}
+.jobPageDemo-middle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 75vh;
+}
+.jobPageDemo-middle-inner {
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 2rem 0rem;
+  .jobPageDemo-content {
+    padding: 0.5rem;
+    width: 32rem;
+    height: 28rem;
+    overflow-y: auto;
+    text-align: left;
+  }
+}
+.jobPageDemo-bottom {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  min-height: 10vh;
+}

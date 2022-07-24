@@ -8,6 +8,8 @@ import "./style/App.css";
 import MyPages from "./pages/MyPages";
 import LandingPage from "./pages/LandingPage";
 import ContactsPage from "./pages/ContactsPage";
+import EventPageDemo from "./pages/EventPageDemo";
+import JobPageDemo from "./pages/JobPageDemo";
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
             <Route path="/mypages" component={MyPages} />
             <Route path="/landing/:id" component={LandingPage} />
             <Route path="/contacts/landing/:id" component={ContactsPage} />
+            <Route path="/eventpagedemo" component={EventPageDemo} />
+            <Route path="/jobpagedemo" component={JobPageDemo} />
           </Switch>
         </div>
       </BrowserRouter>

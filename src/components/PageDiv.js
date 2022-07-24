@@ -17,7 +17,7 @@ const PageDiv = ({ page }) => {
         <h3 className="link-contacts">contacts</h3>
       </Link>
       <div>
-        {/*//! need to add: delete + update */}
+        {/*// need to add: delete + update */}
         <p>created </p>
         <p> {new Date(page.attributes.createdAt).toLocaleString()}</p>
       </div>
