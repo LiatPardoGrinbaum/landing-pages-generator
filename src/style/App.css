@@ -687,6 +687,17 @@
   flex-direction: column;
 }
 
+.preview-top-product {
+  width: 100%;
+  height: 90px;
+  margin-top: 1rem;
+  background: no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .preview-middle {
   width: 100%;
   height: 120px;
@@ -724,6 +735,53 @@
   align-items: center;
   flex-direction: column;
   color: grey;
+}
+
+.preview-top-job {
+  width: 100%;
+  height: 60px;
+  margin-top: 1rem;
+  background: no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.job-preview-middle {
+  width: 100%;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.job-preview-middle .job-preview-middle-inner {
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.job-preview-middle .job-preview-middle-inner .jobDescDiv {
+  width: 30%;
+  height: 102px;
+}
+.job-preview-middle .job-preview-middle-inner .preview-contact-form {
+  width: 25%;
+  height: 102px;
+  background: rgba(255, 255, 255, 0.478);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: grey;
+}
+
+.job-preview-bottom {
+  width: 100%;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .App {

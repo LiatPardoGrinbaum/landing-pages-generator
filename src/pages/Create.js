@@ -15,18 +15,22 @@ const Create = (props) => {
   const [template, setTemplate] = useState("");
   const [eventDate, setEventDate] = useState("");
   const [title, setTitle] = useState("");
-  const [titleColor, setTitleColor] = useState("");
+  const [titleColor, setTitleColor] = useState("#000000");
+  const [jobTopSectionColor, setJobTopSectionColor] = useState("");
   const [subTitle, setSubTitle] = useState("");
-  const [subTitleColor, setSubTitleColor] = useState("");
+  const [subTitleColor, setSubTitleColor] = useState("#000000");
   const [contentFile, setContentFile] = useState(null);
   const [ContentFilePreview, setContentFilePreview] = useState(null);
   const [editorContent, setEditorContent] = useState(null);
   const [contentBackgroundColor, setContentBackgroundColor] = useState("");
+  const [jobDescColor, setJobDescColor] = useState("#000000");
+  const [bottomSectionColor, setBottomSectionColor] = useState("#000000");
+  const [bottomSectionText, setBottomSectionText] = useState("");
   const [username, setUsername] = useState("");
   const [file, setFile] = useState(null);
   const [filePreview, setFilePreview] = useState("");
   // const [imageURL, setImageURL] = useState("");
-  const [formBackgroundColor, setFormBackgroundColor] = useState("");
+  const [formBackgroundColor, setFormBackgroundColor] = useState("#000000");
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -173,58 +177,67 @@ const Create = (props) => {
                 setTitleColor(e.target.value);
               }}
             />
-            <label htmlFor="subtitle">Enter sub title:</label>
-            <input
-              type="text"
-              id="subtitle"
-              placeholder="subtitle"
-              value={subTitle}
-              onChange={(e) => {
-                setSubTitle(e.target.value);
-              }}
-            />
-            <label htmlFor="subtitlecolor">Select a color for the sub-title:</label>
-            <input
-              type="color"
-              id="subtitlecolor"
-              value={subTitleColor}
-              onChange={(e) => {
-                setSubTitleColor(e.target.value);
-              }}
-            />
-            <label htmlFor="subtitlecolor">Select a color for the sub-title:</label>
-            <input
-              type="color"
-              id="subtitlecolor"
-              value={subTitleColor}
-              onChange={(e) => {
-                setSubTitleColor(e.target.value);
-              }}
-            />
-            <label htmlFor="image">Upload a background image:</label>
-            <input
-              ref={inputRef}
-              type="file"
-              label="Upload Image (optional):"
-              id="image"
-              onChange={(e) => {
-                setFile(e.target.files[0]);
-                setFilePreview(URL.createObjectURL(e.target.files[0]));
-                // e.target.value = null;
-              }}
-            />
-            <label htmlFor="contentimage">Upload Image for content section:</label>
-            <input
-              ref={inputRef}
-              type="file"
-              label="Upload Image for content section (optional):"
-              id="contentimage"
-              onChange={(e) => {
-                setContentFile(e.target.files[0]);
-                setContentFilePreview(URL.createObjectURL(e.target.files[0]));
-                // e.target.value = null;
-              }}
-            />
+            {template === "job" && (
+              <>
+                <label htmlFor="jobTopSectionColor">Select a color for the top section:</label>
+                <input
+                  type="color"
+                  id="jobTopSectionColor"
+                  value={jobTopSectionColor}
+                  onChange={(e) => {
+                    setJobTopSectionColor(e.target.value);
+                  }}
+                />
+              </>
+            )}
+            {template !== "job" && (
+              <>
+                <label htmlFor="subtitle">Enter sub title:</label>
+                <input
+                  type="text"
+                  id="subtitle"
+                  placeholder="subtitle"
+                  value={subTitle}
+                  onChange={(e) => {
+                    setSubTitle(e.target.value);
+                  }}
+                />
+                <label htmlFor="subtitlecolor">Select a color for the sub-title:</label>
+                <input
+                  type="color"
+                  id="subtitlecolor"
+                  value={subTitleColor}
+                  onChange={(e) => {
+                    setSubTitleColor(e.target.value);
+                  }}
+                />
+
+                <label htmlFor="image">Upload a background image:</label>
+                <input
+                  ref={inputRef}
+                  type="file"
+                  label="Upload Image (optional):"
+                  id="image"
+                  onChange={(e) => {
+                    setFile(e.target.files[0]);
+                    setFilePreview(URL.createObjectURL(e.target.files[0]));
+                    // e.target.value = null;
+                  }}
+                />
+                <label htmlFor="contentimage">Upload Image for content section:</label>
+                <input
+                  ref={inputRef}
+                  type="file"
+                  label="Upload Image for content section (optional):"
+                  id="contentimage"
+                  onChange={(e) => {
+                    setContentFile(e.target.files[0]);
+                    setContentFilePreview(URL.createObjectURL(e.target.files[0]));
+                    // e.target.value = null;
+                  }}
+                />
+              </>
+            )}
             <label>Add styled text as main content:</label>
             <Editor
               apiKey="lqx3wrfyv0nu50qbedvjdk62xwsgmjfv1qf40bdntzcsdpvd"
@@ -262,7 +275,12 @@ const Create = (props) => {
                 content_style: "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
               }}
             />
-            <label htmlFor="title-color">Select a color for main content background:</label>
+            <label htmlFor="title-color">
+              {template === "job"
+                ? `Select a color for the middle section`
+                : `Select a color for main content background`}
+              :
+            </label>
             <input
               type="color"
               id="title-color"
@@ -271,16 +289,53 @@ const Create = (props) => {
                 setContentBackgroundColor(e.target.value);
               }}
             />
-            <label htmlFor="title-color">Select a color for contact form background:</label>
-            <input
-              type="color"
-              id="title-color"
-              value={formBackgroundColor}
-              onChange={(e) => {
-                setFormBackgroundColor(e.target.value);
-              }}
-            />
-            <label htmlFor="contacts-fields">Select contact form fields:</label>
+            {template !== "job" ? (
+              <>
+                <label htmlFor="title-color">Select a color for contact form background:</label>
+                <input
+                  type="color"
+                  id="title-color"
+                  value={formBackgroundColor}
+                  onChange={(e) => {
+                    setFormBackgroundColor(e.target.value);
+                  }}
+                />
+              </>
+            ) : (
+              <>
+                <label htmlFor="job-desc-color">Select a color for the main content background:</label>
+                <input
+                  type="color"
+                  id="job-desc-colorr"
+                  value={jobDescColor}
+                  onChange={(e) => {
+                    setJobDescColor(e.target.value);
+                  }}
+                />
+                <label htmlFor="bottom-section-color">Select a color for the bottom section background:</label>
+                <input
+                  type="color"
+                  id="bottom-section-color"
+                  value={bottomSectionColor}
+                  onChange={(e) => {
+                    setBottomSectionColor(e.target.value);
+                  }}
+                />
+                <label htmlFor="title">Enter text for the bottom section:</label>
+                <input
+                  type="text"
+                  id="title"
+                  placeholder="text"
+                  value={bottomSectionText}
+                  onChange={(e) => {
+                    setBottomSectionText(e.target.value);
+                  }}
+                />
+              </>
+            )}
+
+            {/*<label htmlFor="contacts-fields">Select contact form fields:</label>
+            //!complete checkbox */}
             {error && <div style={{ color: "red" }}>{error}</div>}
             {spinner && <Spinner />}
             <button className="createBtn" type="submit">
@@ -299,6 +354,10 @@ const Create = (props) => {
           contentImage={ContentFilePreview}
           contentBackgroundColor={contentBackgroundColor}
           formBackgroundColor={formBackgroundColor}
+          jobTopSectionColor={jobTopSectionColor}
+          jobDescColor={jobDescColor}
+          bottomSectionColor={bottomSectionColor}
+          bottomSectionText={bottomSectionText}
         />
       </div>
     </div>
