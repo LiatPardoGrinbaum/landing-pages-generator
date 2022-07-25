@@ -1,8 +1,9 @@
 import Header from "../components/Header";
 import { Link } from "react-router-dom";
-import { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { MyContext } from "../context/MyContext";
 import Spinner from "../components/Spinner";
+import ContactTable from "../components/ContactTable";
 import API from "../Api/API";
 
 const ContactsPage = (props) => {
@@ -11,6 +12,12 @@ const ContactsPage = (props) => {
   const [error, setError] = useState(null);
   const [landingData, setLandingData] = useState({});
   const [contacts, setContacts] = useState([]);
+  //for updating
+  const [contactUpdteMode, setContactUpdteMode] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [note, setNote] = useState("");
   useEffect(() => {
     setSpinner(true);
     setError(null);
@@ -27,6 +34,8 @@ const ContactsPage = (props) => {
           },
         });
         setContacts(response.data.data);
+
+        console.log(response.data.data);
         setSpinner(false);
       };
       getData();
@@ -38,15 +47,26 @@ const ContactsPage = (props) => {
   }, [location, setSpinner]);
   // console.log(props.match.params.id);
 
+  console.log(name);
   const insertContacts = () => {
     return contacts.map((contact, id) => {
       return (
-        <div key={id} className="contact-row">
-          <div className="div-num">{id + 1}</div>
-          <div>{contact.attributes.name}</div>
-          <div>{contact.attributes.email}</div>
-          <div>{contact.attributes.phone}</div>
-        </div>
+        <React.Fragment key={id}>
+          <ContactTable
+            contact={contact}
+            id={id}
+            contactUpdteMode={contactUpdteMode}
+            setContactUpdteMode={setContactUpdteMode}
+            name={name}
+            setName={setName}
+            email={email}
+            setEmail={setEmail}
+            phone={phone}
+            setPhone={setPhone}
+            note={note}
+            setNote={setNote}
+          />
+        </React.Fragment>
       );
     });
   };
@@ -65,16 +85,18 @@ const ContactsPage = (props) => {
         }}>
         {Object.keys(landingData).length !== 0 && (
           <h3>
-            <span>{landingData.attributes.shortDesc}</span>
+            <span className="span-link">{landingData.attributes.shortDesc}</span>
           </h3>
         )}
       </Link>
       <div className="contacts-table">
         <div className="contact-first-row">
+          <div>action</div>
           <div className="div-num">Contact no.</div>
           <div>name</div>
           <div>email</div>
           <div>phone</div>
+          <div>notes</div>
         </div>
         {contacts.length !== 0 && insertContacts()}
       </div>

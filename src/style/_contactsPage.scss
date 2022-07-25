@@ -11,7 +11,7 @@
   a {
     text-decoration: none;
   }
-  span {
+  .span-link {
     color: rgb(150, 211, 150);
     text-shadow: 2px 1px 3px black;
   }
@@ -23,10 +23,19 @@
   align-items: center;
   flex-direction: column;
   background: rgb(250, 245, 236);
-  border-top: 1px solid grey;
-  border-left: 1px solid grey;
+  // border: 1px solid grey;
 
   margin-top: 2rem;
+}
+.table-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+.div-num-vertical {
+  display: none;
+  width: 4rem;
 }
 .contact-row,
 .contact-first-row {
@@ -34,16 +43,65 @@
   justify-content: space-around;
   align-items: center;
   width: 100%;
+  border: 1px solid grey;
   div {
     width: 30%;
     min-width: 120px;
-    border-right: 1px solid grey;
-    border-bottom: 1px solid grey;
+    // border-right: 1px solid grey;
+    // border-bottom: 1px solid grey;
+    height: auto;
   }
-  // .div-num {
-  //   min-width: 30px;
-  // }
+  .span-cell {
+    margin-right: 0.3rem;
+    font-weight: bold;
+
+    display: none;
+  }
+  input,
+  textarea {
+    width: 100%;
+    background: none;
+    border: none;
+    color: black;
+    height: auto;
+    text-align: center;
+  }
+  .input-updatemode {
+    border: 1px solid rgba(0, 0, 0, 0.268);
+    background: white;
+    border-radius: 0.3rem;
+  }
+  button {
+    width: 4rem;
+    margin: 0.1rem 0.2rem;
+  }
 }
 .contact-first-row {
   font-weight: bold;
+}
+
+@media (max-width: 1000px) {
+  .contact-row {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    border-left: 1px solid black;
+    .div-num {
+      display: none;
+    }
+    div {
+      border: none;
+      padding-left: 0.5rem;
+      width: 80%;
+    }
+    .span-cell {
+      display: inline-block;
+    }
+  }
+  .contact-first-row {
+    display: none;
+  }
+  .div-num-vertical {
+    display: block;
+  }
 }

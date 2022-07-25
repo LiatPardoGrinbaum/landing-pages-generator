@@ -13,24 +13,25 @@ const Create = (props) => {
   const { loggedUser, spinner, setSpinner } = useContext(MyContext);
   const [shortDesc, setShortDesc] = useState("");
   const [template, setTemplate] = useState("");
-  const [eventDate, setEventDate] = useState("");
+  // const [eventDate, setEventDate] = useState("");
   const [title, setTitle] = useState("");
-  const [titleColor, setTitleColor] = useState("#000000");
+  const [titleColor, setTitleColor] = useState("");
   const [jobTopSectionColor, setJobTopSectionColor] = useState("");
   const [subTitle, setSubTitle] = useState("");
-  const [subTitleColor, setSubTitleColor] = useState("#000000");
+  const [subTitleColor, setSubTitleColor] = useState("");
   const [contentFile, setContentFile] = useState(null);
   const [ContentFilePreview, setContentFilePreview] = useState(null);
   const [editorContent, setEditorContent] = useState(null);
   const [contentBackgroundColor, setContentBackgroundColor] = useState("");
-  const [jobDescColor, setJobDescColor] = useState("#000000");
-  const [bottomSectionColor, setBottomSectionColor] = useState("#000000");
+  const [jobDescColor, setJobDescColor] = useState("");
+  const [bottomSectionColor, setBottomSectionColor] = useState("");
   const [bottomSectionText, setBottomSectionText] = useState("");
+  const [bottomSectionTextColor, setBottomSectionTextColor] = useState("");
   const [username, setUsername] = useState("");
   const [file, setFile] = useState(null);
   const [filePreview, setFilePreview] = useState("");
   // const [imageURL, setImageURL] = useState("");
-  const [formBackgroundColor, setFormBackgroundColor] = useState("#000000");
+  const [formBackgroundColor, setFormBackgroundColor] = useState("");
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -45,7 +46,7 @@ const Create = (props) => {
       // console.log(typeof editorRef.current.getContent());
     }
   };
-  //another way to get the same outout:
+  //another way to get the same output:
   // const onEditorHandleChange = (content, editor) => {
   //   setEditorContent(content);
   // };
@@ -54,26 +55,63 @@ const Create = (props) => {
     e.preventDefault();
     setSpinner(true);
     try {
-      let formData = new FormData();
-      formData.append("files", file);
-      const { data } = await API.post("/upload", formData, {
-        headers: {
-          "content-type": "multipart/form-data",
-          Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
-        },
-      });
+      let response1;
+      let response2;
+      if (template !== "job") {
+        const formData = new FormData();
+        formData.append("files", file);
+        response1 = await API.post("/upload", formData, {
+          headers: {
+            "content-type": "multipart/form-data",
+            Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
+          },
+        });
+        const formData2 = new FormData();
+        formData2.append("files", contentFile);
+        response2 = await API.post("/upload", formData2, {
+          headers: {
+            "content-type": "multipart/form-data",
+            Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
+          },
+        });
+      }
+
       // setImageURL(data[0].url);
-      const newLanding = {
-        shortDesc,
-        title,
-        titleColor,
-        imageURL: data[0].url,
-        editorContent,
-        contentBackgroundColor,
-        formBackgroundColor,
-        username,
-        uniqid: uuidv4().slice(0, 12),
-      };
+      let newLanding;
+      if (template === "job") {
+        newLanding = {
+          shortDesc,
+          template,
+          title,
+          titleColor,
+          jobTopSectionColor,
+          editorContent,
+          contentBackgroundColor, //middle section
+          jobDescColor,
+          bottomSectionColor,
+          bottomSectionText,
+          bottomSectionTextColor,
+          username,
+          uniqid: uuidv4().slice(0, 12),
+        };
+      } else {
+        newLanding = {
+          shortDesc,
+          template,
+          title,
+          titleColor,
+          subTitle,
+          subTitleColor,
+          imageURL: response1.data[0].url,
+          imageURLsmall: response2.data[0].url,
+          editorContent,
+          contentBackgroundColor,
+          formBackgroundColor,
+
+          username,
+          uniqid: uuidv4().slice(0, 12),
+        };
+      }
       await API.post(
         "/landings",
         { data: newLanding },
@@ -144,7 +182,8 @@ const Create = (props) => {
                 Job offer
               </div>
             </div>
-            {template === "events" && (
+            {/* //*event date- removed for now */}
+            {/*         {template === "events" && (
               <div htmlFor="date">
                 Enter event's date:{" "}
                 <input
@@ -156,7 +195,7 @@ const Create = (props) => {
                   }}
                 />
               </div>
-            )}
+            )} */}
 
             <label htmlFor="title">Enter the main page title:</label>
             <input
@@ -291,7 +330,7 @@ const Create = (props) => {
             />
             {template !== "job" ? (
               <>
-                <label htmlFor="title-color">Select a color for contact form background:</label>
+                <label htmlFor="title-color">Select a background color for contact form section:</label>
                 <input
                   type="color"
                   id="title-color"
@@ -303,7 +342,7 @@ const Create = (props) => {
               </>
             ) : (
               <>
-                <label htmlFor="job-desc-color">Select a color for the main content background:</label>
+                <label htmlFor="job-desc-color">Select a color for the job description background:</label>
                 <input
                   type="color"
                   id="job-desc-colorr"
@@ -329,6 +368,15 @@ const Create = (props) => {
                   value={bottomSectionText}
                   onChange={(e) => {
                     setBottomSectionText(e.target.value);
+                  }}
+                />
+                <label htmlFor="bottom-section-text-color">Select a color for the bottom section text:</label>
+                <input
+                  type="color"
+                  id="bottom-section-text-color"
+                  value={bottomSectionTextColor}
+                  onChange={(e) => {
+                    setBottomSectionTextColor(e.target.value);
                   }}
                 />
               </>
@@ -358,6 +406,7 @@ const Create = (props) => {
           jobDescColor={jobDescColor}
           bottomSectionColor={bottomSectionColor}
           bottomSectionText={bottomSectionText}
+          bottomSectionTextColor={bottomSectionTextColor}
         />
       </div>
     </div>

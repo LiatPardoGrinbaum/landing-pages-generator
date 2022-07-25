@@ -3,24 +3,60 @@
   height: auto;
 }
 
-.section-top {
+//events and product landing page style
+
+.section-top-events {
   width: 100%;
-  height: 50vh;
+  height: 100vh;
   background: no-repeat center center/cover;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   h1 {
     font-size: 3rem;
+    padding: 0.5rem;
+    background: rgba(255, 249, 249, 0.484);
+    width: 100%;
     font-family: "Cinzel", serif;
+    color: rgb(123, 76, 76);
+  }
+  h2 {
+    background: rgba(255, 249, 249, 0.484);
+    width: 100%;
+    padding: 0.5rem;
+  }
+}
+.section-top-product {
+  width: 100%;
+  height: 40vh;
+  background: no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  h1 {
+    font-size: 3rem;
+    padding: 0.5rem;
+    background: rgba(255, 249, 249, 0.484);
+    width: 100%;
+    font-family: "Cinzel", serif;
+    color: rgb(123, 76, 76);
+  }
+  h2 {
+    background: rgba(255, 249, 249, 0.484);
+    width: 100%;
+    padding: 0.5rem;
   }
 }
 .section-middle {
   width: 100%;
-  height: 60vh;
+  min-height: 60vh;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
+  flex-wrap: wrap;
+  padding: 2rem 7rem;
 }
 .section-bottom {
   width: 100%;
@@ -28,6 +64,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 2rem;
 }
 .form-contacts {
   background: rgba(255, 255, 255, 0.449);
@@ -58,5 +95,67 @@
       margin-left: 0.3rem;
       text-shadow: 2px 1px 4px white;
     }
+    button {
+      align-self: center;
+      margin: 0.5rem 0rem;
+      padding: 0.2rem 0.8rem;
+      border-radius: 0.5rem;
+      border: 1px grey solid;
+    }
+    #note {
+      padding: 0.2rem;
+      border-radius: 0.5rem;
+      width: 100%;
+      border: none;
+    }
   }
+}
+
+//job landing page style
+.JobPage-top {
+  width: 100%;
+  min-height: 15vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .jobOffer-h1 {
+    font-size: 3rem;
+    padding: 0.5rem;
+    // background: rgba(229, 229, 229, 0.584);
+    // width: 100%;
+    font-family: "Cinzel", serif;
+    color: white;
+  }
+}
+.jobPage-middle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 75vh;
+}
+.jobPage-middle-inner {
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 1.5rem 0rem;
+  .jobPage-content {
+    padding: 0.5rem;
+    width: 32rem;
+    height: 28rem;
+    overflow-y: auto;
+    text-align: left;
+  }
+}
+.jobPage-bottom {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  min-height: 10vh;
 }

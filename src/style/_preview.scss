@@ -47,6 +47,9 @@ $height: 600px;
     h2 {
       font-size: 0.6rem;
     }
+    p {
+      font-size: 0.4rem;
+    }
   }
 }
 
@@ -91,10 +94,23 @@ $height: 600px;
     display: flex;
     justify-content: space-around;
     align-items: center;
+
     .jobDescDiv {
       width: 30%;
-
+      display: flex;
+      justify-content: center;
+      align-items: center;
       height: $height * 0.17;
+      h1 {
+        font-size: 0.8rem;
+        margin: 0;
+      }
+      h2 {
+        font-size: 0.6rem;
+      }
+      p {
+        font-size: 0.4rem;
+      }
     }
     .preview-contact-form {
       width: 25%;

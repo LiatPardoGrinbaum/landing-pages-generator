@@ -13,6 +13,7 @@ const Preview = ({
   jobDescColor,
   bottomSectionColor,
   bottomSectionText,
+  bottomSectionTextColor,
 }) => {
   console.log(editorContent);
   return (
@@ -65,7 +66,7 @@ const Preview = ({
             )}
           </section>
           <section className="job-preview-bottom" style={{ background: bottomSectionColor }}>
-            <h5>{bottomSectionText}</h5>
+            <h5 style={{ color: bottomSectionTextColor }}>{bottomSectionText}</h5>
           </section>
         </>
       )}
