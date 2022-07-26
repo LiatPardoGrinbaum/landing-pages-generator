@@ -25,6 +25,7 @@ const ProductPageDemo = () => {
         <div className="productPageDemo-middle-inner">
           <div>
             <img
+              alt="img3"
               src={require("../assets/images/bottleproduct.jpg")}
               width="350"
               style={{ borderRadius: "2rem", boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" }}

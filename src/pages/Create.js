@@ -22,7 +22,7 @@ const Create = (props) => {
   const [error, setError] = useState(null);
   //for updating:
   let { id } = useParams();
-  const [landingData, setLandingData] = useState({});
+
   const [initialState, setInitialState] = useState({});
   useEffect(() => {
     if (loggedUser) {
@@ -46,7 +46,7 @@ const Create = (props) => {
         setSpinner(false);
       }
     }
-  }, [setUsername, loggedUser, id]);
+  }, [setUsername, loggedUser, id, setSpinner]);
 
   const onEditorHandleChange = () => {
     if (editorRef.current) {
@@ -136,7 +136,7 @@ const Create = (props) => {
   };
 
   console.log("id", id);
-  console.log(landingData);
+
   console.log("initialState", initialState);
   return (
     <div className="createPage">

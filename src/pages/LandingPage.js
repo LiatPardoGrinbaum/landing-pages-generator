@@ -91,6 +91,7 @@ const LandingPage = () => {
           <section className="section-middle" style={{ backgroundColor: landingData.contentBackgroundColor }}>
             <div>
               <img
+                alt="img2"
                 src={landingData.imageURLsmall}
                 height="300"
                 style={{ borderRadius: "2rem", boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" }}

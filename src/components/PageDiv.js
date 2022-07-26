@@ -1,9 +1,6 @@
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { MyContext } from "../context/MyContext";
-const PageDiv = ({ page }) => {
-  const { landingUpdateMode, setLandingUpdateMode } = useContext(MyContext);
 
+const PageDiv = ({ page }) => {
   const onUpdateClick = () => {
     // setLandingUpdateMode(true);
     // window.location.replace("/update");
