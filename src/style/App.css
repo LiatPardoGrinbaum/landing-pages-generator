@@ -326,7 +326,7 @@
 
 .pageDiv-container {
   width: 300px;
-  height: 150px;
+  height: 160px;
   background: white;
   display: flex;
   justify-content: space-around;
@@ -339,14 +339,40 @@
   text-decoration: none;
   text-shadow: 2px 1px 4px white;
 }
-.pageDiv-container p {
+.pageDiv-container .pageDiv-bottom {
+  width: 100%;
+}
+.pageDiv-container .pageDiv-bottom p {
   color: black;
   text-shadow: 2px 1px 4px white;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.532);
+}
+.pageDiv-container .pageDiv-bottom .landingButtons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.pageDiv-container .pageDiv-bottom .landingButtons a {
+  width: auto;
+}
+.pageDiv-container .pageDiv-bottom .landingButtons button {
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.2rem;
+  border: none;
+  margin: 0.3rem;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+.pageDiv-container a {
+  width: 100%;
 }
 .pageDiv-container .link-enter,
 .pageDiv-container .link-contacts {
   font-size: 1.3rem;
   color: rgb(3, 176, 3);
+  width: 100%;
+  background: rgba(255, 255, 255, 0.532);
 }
 .pageDiv-container .link-enter:hover,
 .pageDiv-container .link-contacts:hover {
@@ -548,6 +574,7 @@
   justify-content: space-around;
   align-items: center;
   width: 100%;
+  border: 1px solid grey;
 }
 
 .div-num-vertical {
@@ -570,7 +597,9 @@
   height: auto;
 }
 .contact-row .span-cell,
-.contact-first-row .span-cell {
+.contact-row .span-cell-textarea,
+.contact-first-row .span-cell,
+.contact-first-row .span-cell-textarea {
   margin-right: 0.3rem;
   font-weight: bold;
   display: none;
@@ -579,12 +608,17 @@
 .contact-row textarea,
 .contact-first-row input,
 .contact-first-row textarea {
-  width: 100%;
+  width: 90%;
   background: none;
   border: none;
   color: black;
   height: auto;
   text-align: center;
+  font-size: 0.8rem;
+}
+.contact-row textarea p,
+.contact-first-row textarea p {
+  font-size: 0.8rem;
 }
 .contact-row .input-updatemode,
 .contact-first-row .input-updatemode {
@@ -615,10 +649,18 @@
   .contact-row div {
     border: none;
     padding-left: 0.5rem;
-    width: 80%;
+    width: 100%;
   }
   .contact-row .span-cell {
     display: inline-block;
+  }
+  .contact-row .span-cell-textarea {
+    display: block;
+  }
+  .contact-row input,
+.contact-row textarea {
+    text-align: left;
+    width: auto;
   }
   .contact-first-row {
     display: none;

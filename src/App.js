@@ -22,6 +22,7 @@ function App() {
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/create" component={Create} />
+            <Route path="/update/:id" component={Create} />
             <Route path="/mypages" component={MyPages} />
             <Route path="/landing/:id" component={LandingPage} />
             <Route path="/contacts/landing/:id" component={ContactsPage} />

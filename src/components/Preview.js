@@ -1,45 +1,34 @@
-const Preview = ({
-  title,
-  image,
-  template,
-  subTitle,
-  titleColor,
-  subTitleColor,
-  editorContent,
-  contentImage,
-  contentBackgroundColor,
-  formBackgroundColor,
-  jobTopSectionColor,
-  jobDescColor,
-  bottomSectionColor,
-  bottomSectionText,
-  bottomSectionTextColor,
-}) => {
-  console.log(editorContent);
+const Preview = ({ initialState, image, contentImage }) => {
+  console.log(initialState.editorContent);
   return (
     <div className="landing-preview">
-      <h3>{template}</h3>
-      {template === "events" || template === "product" ? (
+      <h3>{initialState.template}</h3>
+      {initialState.template === "events" || initialState.template === "product" ? (
         <>
           {" "}
           <section
-            className={template === "events" ? "preview-top" : "preview-top-product"}
+            className={initialState.template === "events" ? "preview-top" : "preview-top-product"}
             style={{ backgroundImage: `url(${image})` }}>
-            <h3 style={{ color: titleColor, width: "100%", backgroundColor: " rgba(255, 249, 249, 0.484)" }}>
-              {title}
+            <h3 style={{ color: initialState.titleColor, width: "100%", background: " rgba(255, 249, 249, 0.484)" }}>
+              {initialState.title}
             </h3>
-            <h4 style={{ color: subTitleColor, width: "100%", backgroundColor: " rgba(255, 249, 249, 0.484)" }}>
-              {subTitle}
+            <h4
+              style={{
+                color: initialState.subTitleColor,
+                width: "100%",
+                background: " rgba(255, 249, 249, 0.484)",
+              }}>
+              {initialState.subTitle}
             </h4>
           </section>
-          <section className="preview-middle" style={{ backgroundColor: contentBackgroundColor }}>
+          <section className="preview-middle" style={{ background: initialState.contentBackgroundColor }}>
             <div className="preview-middle-inner">
               <img src={contentImage} height="100" />
-              <div dangerouslySetInnerHTML={{ __html: editorContent }} />
+              <div dangerouslySetInnerHTML={{ __html: initialState.editorContent }} />
             </div>
           </section>
-          <section className="preview-bottom" style={{ backgroundColor: formBackgroundColor }}>
-            {formBackgroundColor && (
+          <section className="preview-bottom" style={{ background: initialState.formBackgroundColor }}>
+            {initialState.formBackgroundColor && (
               <div className="preview-contact-form">
                 <p>contact</p> <p>form</p>
               </div>
@@ -48,15 +37,15 @@ const Preview = ({
         </>
       ) : (
         <>
-          <section className="preview-top-job" style={{ backgroundColor: jobTopSectionColor }}>
-            <h3 style={{ color: titleColor, width: "100%", backgroundColor: " rgba(255, 249, 249, 0.484)" }}>
-              {title}
+          <section className="preview-top-job" style={{ background: initialState.jobTopSectionColor }}>
+            <h3 style={{ color: initialState.titleColor, width: "100%", background: " rgba(255, 249, 249, 0.484)" }}>
+              {initialState.title}
             </h3>
           </section>
-          <section className="job-preview-middle" style={{ backgroundColor: contentBackgroundColor }}>
-            {contentBackgroundColor && (
+          <section className="job-preview-middle" style={{ background: initialState.contentBackgroundColor }}>
+            {initialState.contentBackgroundColor && (
               <div className="job-preview-middle-inner">
-                <div className="jobDescDiv" style={{ background: jobDescColor }}>
+                <div className="jobDescDiv" style={{ background: initialState.jobDescColor }}>
                   job description
                 </div>
                 <div className="preview-contact-form">
@@ -65,8 +54,8 @@ const Preview = ({
               </div>
             )}
           </section>
-          <section className="job-preview-bottom" style={{ background: bottomSectionColor }}>
-            <h5 style={{ color: bottomSectionTextColor }}>{bottomSectionText}</h5>
+          <section className="job-preview-bottom" style={{ background: initialState.bottomSectionColor }}>
+            <h5 style={{ color: initialState.bottomSectionTextColor }}>{initialState.bottomSectionText}</h5>
           </section>
         </>
       )}

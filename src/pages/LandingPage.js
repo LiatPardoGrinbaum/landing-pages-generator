@@ -67,6 +67,7 @@ const LandingPage = () => {
       setName("");
       setEmail("");
       setPhone("");
+      setNote("");
       setMessage("Your form has been sent successfully!");
     } catch (err) {
       console.log(err);

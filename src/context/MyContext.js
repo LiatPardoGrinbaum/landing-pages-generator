@@ -6,6 +6,7 @@ function ContextProvider({ children }) {
   const [loggedUser, setLoggedUser] = useState(null);
   const [token, setToken] = useState(null);
   const [spinner, setSpinner] = useState(false);
+  const [landingUpdateMode, setLandingUpdateMode] = useState(false);
 
   const values = {
     loggedUser,
@@ -14,6 +15,8 @@ function ContextProvider({ children }) {
     setToken,
     spinner,
     setSpinner,
+    landingUpdateMode,
+    setLandingUpdateMode,
   };
 
   useEffect(() => {

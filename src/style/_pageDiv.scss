@@ -1,6 +1,6 @@
 .pageDiv-container {
   width: 300px;
-  height: 150px;
+  height: 160px;
   background: white;
   display: flex;
   justify-content: space-around;
@@ -12,14 +12,42 @@
     text-decoration: none;
     text-shadow: 2px 1px 4px white;
   }
-  p {
-    color: black;
-    text-shadow: 2px 1px 4px white;
+  .pageDiv-bottom {
+    width: 100%;
+    p {
+      color: black;
+      text-shadow: 2px 1px 4px white;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.532);
+    }
+    .landingButtons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      a {
+        width: auto;
+      }
+      button {
+        padding: 0.2rem 0.4rem;
+        border-radius: 0.2rem;
+        border: none;
+        margin: 0.3rem;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+      }
+    }
+  }
+
+  a {
+    width: 100%;
   }
   .link-enter,
   .link-contacts {
     font-size: 1.3rem;
     color: rgb(3, 176, 3);
+    width: 100%;
+    background: rgba(255, 255, 255, 0.532);
+
     &:hover {
       color: grey;
     }

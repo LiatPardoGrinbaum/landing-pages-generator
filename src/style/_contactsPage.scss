@@ -32,6 +32,7 @@
   justify-content: space-around;
   align-items: center;
   width: 100%;
+  border: 1px solid grey;
 }
 .div-num-vertical {
   display: none;
@@ -51,7 +52,8 @@
     // border-bottom: 1px solid grey;
     height: auto;
   }
-  .span-cell {
+  .span-cell,
+  .span-cell-textarea {
     margin-right: 0.3rem;
     font-weight: bold;
 
@@ -59,12 +61,18 @@
   }
   input,
   textarea {
-    width: 100%;
+    width: 90%;
     background: none;
     border: none;
     color: black;
     height: auto;
     text-align: center;
+    font-size: 0.8rem;
+  }
+  textarea {
+    p {
+      font-size: 0.8rem;
+    }
   }
   .input-updatemode {
     border: 1px solid rgba(0, 0, 0, 0.268);
@@ -92,10 +100,18 @@
     div {
       border: none;
       padding-left: 0.5rem;
-      width: 80%;
+      width: 100%;
     }
     .span-cell {
       display: inline-block;
+    }
+    .span-cell-textarea {
+      display: block;
+    }
+    input,
+    textarea {
+      text-align: left;
+      width: auto;
     }
   }
   .contact-first-row {

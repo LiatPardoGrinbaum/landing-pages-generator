@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import React, { useEffect, useState, useContext } from "react";
 import { MyContext } from "../context/MyContext";
 import Spinner from "../components/Spinner";
-import ContactTable from "../components/ContactTable";
+import ContactRow from "../components/ContactRow";
 import API from "../Api/API";
-
+//! need to change contact form rows for eact case (I only did it for job. left: events, product)!//
 const ContactsPage = (props) => {
   const { spinner, setSpinner } = useContext(MyContext);
   const location = document.URL;
@@ -52,7 +52,7 @@ const ContactsPage = (props) => {
     return contacts.map((contact, id) => {
       return (
         <React.Fragment key={id}>
-          <ContactTable
+          <ContactRow
             contact={contact}
             id={id}
             contactUpdteMode={contactUpdteMode}

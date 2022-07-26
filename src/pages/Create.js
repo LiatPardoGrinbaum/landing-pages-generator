@@ -6,44 +6,51 @@ import { v4 as uuidv4 } from "uuid";
 import API from "../Api/API";
 import Spinner from "../components/Spinner";
 import Preview from "../components/Preview";
+import { useParams } from "react-router-dom";
 
 const Create = (props) => {
   const inputRef = useRef(null);
   const editorRef = useRef(null);
   const { loggedUser, spinner, setSpinner } = useContext(MyContext);
-  const [shortDesc, setShortDesc] = useState("");
-  const [template, setTemplate] = useState("");
-  // const [eventDate, setEventDate] = useState("");
-  const [title, setTitle] = useState("");
-  const [titleColor, setTitleColor] = useState("");
-  const [jobTopSectionColor, setJobTopSectionColor] = useState("");
-  const [subTitle, setSubTitle] = useState("");
-  const [subTitleColor, setSubTitleColor] = useState("");
-  const [contentFile, setContentFile] = useState(null);
-  const [ContentFilePreview, setContentFilePreview] = useState(null);
-  const [editorContent, setEditorContent] = useState(null);
-  const [contentBackgroundColor, setContentBackgroundColor] = useState("");
-  const [jobDescColor, setJobDescColor] = useState("");
-  const [bottomSectionColor, setBottomSectionColor] = useState("");
-  const [bottomSectionText, setBottomSectionText] = useState("");
-  const [bottomSectionTextColor, setBottomSectionTextColor] = useState("");
-  const [username, setUsername] = useState("");
-  const [file, setFile] = useState(null);
-  const [filePreview, setFilePreview] = useState("");
-  // const [imageURL, setImageURL] = useState("");
-  const [formBackgroundColor, setFormBackgroundColor] = useState("");
-  const [error, setError] = useState(null);
 
+  const [ContentFilePreview, setContentFilePreview] = useState(null);
+
+  const [username, setUsername] = useState("");
+
+  const [filePreview, setFilePreview] = useState("");
+
+  const [error, setError] = useState(null);
+  //for updating:
+  let { id } = useParams();
+  const [landingData, setLandingData] = useState({});
+  const [initialState, setInitialState] = useState({});
   useEffect(() => {
     if (loggedUser) {
       setUsername(loggedUser.username);
     }
-  }, [setUsername, loggedUser]);
+    //for updating:
+    if (id) {
+      setSpinner(true);
+      setError(null);
+      try {
+        const getData = async () => {
+          const { data } = await API.get(`/landings?filters[id]=${id}`);
+          console.log(data);
+          setInitialState(data.data[0].attributes);
+          setSpinner(false);
+        };
+        getData();
+      } catch (err) {
+        console.log(err);
+        setError(err.response.data.error.message);
+        setSpinner(false);
+      }
+    }
+  }, [setUsername, loggedUser, id]);
 
   const onEditorHandleChange = () => {
     if (editorRef.current) {
-      setEditorContent(editorRef.current.getContent());
-      // console.log(typeof editorRef.current.getContent());
+      setInitialState({ ...initialState, editorContent: editorRef.current.getContent() });
     }
   };
   //another way to get the same output:
@@ -57,17 +64,19 @@ const Create = (props) => {
     try {
       let response1;
       let response2;
-      if (template !== "job") {
+
+      if (initialState.template !== "job") {
         const formData = new FormData();
-        formData.append("files", file);
+        formData.append("files", initialState.file);
         response1 = await API.post("/upload", formData, {
           headers: {
             "content-type": "multipart/form-data",
             Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
           },
         });
+
         const formData2 = new FormData();
-        formData2.append("files", contentFile);
+        formData2.append("files", initialState.contentFile);
         response2 = await API.post("/upload", formData2, {
           headers: {
             "content-type": "multipart/form-data",
@@ -75,54 +84,49 @@ const Create = (props) => {
           },
         });
       }
-
-      // setImageURL(data[0].url);
       let newLanding;
-      if (template === "job") {
+      // setImageURL(data[0].url);
+      if (initialState.template === "job") {
         newLanding = {
-          shortDesc,
-          template,
-          title,
-          titleColor,
-          jobTopSectionColor,
-          editorContent,
-          contentBackgroundColor, //middle section
-          jobDescColor,
-          bottomSectionColor,
-          bottomSectionText,
-          bottomSectionTextColor,
+          ...initialState,
           username,
           uniqid: uuidv4().slice(0, 12),
         };
       } else {
         newLanding = {
-          shortDesc,
-          template,
-          title,
-          titleColor,
-          subTitle,
-          subTitleColor,
-          imageURL: response1.data[0].url,
-          imageURLsmall: response2.data[0].url,
-          editorContent,
-          contentBackgroundColor,
-          formBackgroundColor,
-
+          ...initialState,
+          imageURL: response1.data[0].url || "",
+          imageURLsmall: response2.data[0].url || "",
           username,
           uniqid: uuidv4().slice(0, 12),
         };
       }
-      await API.post(
-        "/landings",
-        { data: newLanding },
-        {
-          headers: {
-            Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
-          },
-        }
-      );
-      setSpinner(false);
-      alert("Your landing page was created successfuly!");
+      if (!id) {
+        await API.post(
+          "/landings",
+          { data: newLanding },
+          {
+            headers: {
+              Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
+            },
+          }
+        );
+        setSpinner(false);
+        alert("Your landing page was created successfuly!");
+      } else {
+        await API.put(
+          `/landings/${id}`,
+          { data: newLanding },
+          {
+            headers: {
+              Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
+            },
+          }
+        );
+        setSpinner(false);
+        alert("Your landing page was updated successfuly!");
+      }
+
       props.history.push("/mypages");
     } catch (err) {
       console.log(err);
@@ -131,6 +135,9 @@ const Create = (props) => {
     }
   };
 
+  console.log("id", id);
+  console.log(landingData);
+  console.log("initialState", initialState);
   return (
     <div className="createPage">
       <Header />
@@ -144,9 +151,9 @@ const Create = (props) => {
               type="text"
               id="shortDesc"
               placeholder="short description"
-              value={shortDesc}
+              value={initialState.shortDesc || ""}
               onChange={(e) => {
-                setShortDesc(e.target.value);
+                setInitialState({ ...initialState, shortDesc: e.target.value });
               }}
             />
             <div className="radio-buttons">
@@ -156,8 +163,8 @@ const Create = (props) => {
                   type="radio"
                   value="events"
                   name="events"
-                  checked={template === "events"}
-                  onChange={() => setTemplate("events")}
+                  checked={initialState.template === "events" || ""}
+                  onChange={() => setInitialState({ ...initialState, template: "events" })}
                 />
                 Events
               </div>
@@ -166,8 +173,8 @@ const Create = (props) => {
                   type="radio"
                   value="product"
                   name="product"
-                  checked={template === "product"}
-                  onChange={() => setTemplate("product")}
+                  checked={initialState.template === "product" || ""}
+                  onChange={() => setInitialState({ ...initialState, template: "product" })}
                 />
                 Company's product advertising
               </div>
@@ -176,8 +183,8 @@ const Create = (props) => {
                   type="radio"
                   value="job"
                   name="job"
-                  checked={template === "job"}
-                  onChange={() => setTemplate("job")}
+                  checked={initialState.template === "job" || ""}
+                  onChange={() => setInitialState({ ...initialState, template: "job" })}
                 />
                 Job offer
               </div>
@@ -202,52 +209,52 @@ const Create = (props) => {
               type="text"
               id="title"
               placeholder="title"
-              value={title}
+              value={initialState.title || ""}
               onChange={(e) => {
-                setTitle(e.target.value);
+                setInitialState({ ...initialState, title: e.target.value });
               }}
             />
             <label htmlFor="title-color">Select a color for the title:</label>
             <input
               type="color"
               id="title-color"
-              value={titleColor}
+              value={initialState.titleColor || ""}
               onChange={(e) => {
-                setTitleColor(e.target.value);
+                setInitialState({ ...initialState, titleColor: e.target.value });
               }}
             />
-            {template === "job" && (
+            {initialState.template === "job" && (
               <>
                 <label htmlFor="jobTopSectionColor">Select a color for the top section:</label>
                 <input
                   type="color"
                   id="jobTopSectionColor"
-                  value={jobTopSectionColor}
+                  value={initialState.jobTopSectionColor || ""}
                   onChange={(e) => {
-                    setJobTopSectionColor(e.target.value);
+                    setInitialState({ ...initialState, jobTopSectionColor: e.target.value });
                   }}
                 />
               </>
             )}
-            {template !== "job" && (
+            {initialState.template !== "job" && (
               <>
                 <label htmlFor="subtitle">Enter sub title:</label>
                 <input
                   type="text"
                   id="subtitle"
                   placeholder="subtitle"
-                  value={subTitle}
+                  value={initialState.subTitle || ""}
                   onChange={(e) => {
-                    setSubTitle(e.target.value);
+                    setInitialState({ ...initialState, subTitle: e.target.value });
                   }}
                 />
                 <label htmlFor="subtitlecolor">Select a color for the sub-title:</label>
                 <input
                   type="color"
                   id="subtitlecolor"
-                  value={subTitleColor}
+                  value={initialState.subTitleColor || ""}
                   onChange={(e) => {
-                    setSubTitleColor(e.target.value);
+                    setInitialState({ ...initialState, subTitleColor: e.target.value });
                   }}
                 />
 
@@ -258,7 +265,7 @@ const Create = (props) => {
                   label="Upload Image (optional):"
                   id="image"
                   onChange={(e) => {
-                    setFile(e.target.files[0]);
+                    setInitialState({ ...initialState, file: e.target.files[0] });
                     setFilePreview(URL.createObjectURL(e.target.files[0]));
                     // e.target.value = null;
                   }}
@@ -270,7 +277,7 @@ const Create = (props) => {
                   label="Upload Image for content section (optional):"
                   id="contentimage"
                   onChange={(e) => {
-                    setContentFile(e.target.files[0]);
+                    setInitialState({ ...initialState, contentFile: e.target.files[0] });
                     setContentFilePreview(URL.createObjectURL(e.target.files[0]));
                     // e.target.value = null;
                   }}
@@ -315,7 +322,7 @@ const Create = (props) => {
               }}
             />
             <label htmlFor="title-color">
-              {template === "job"
+              {initialState.template === "job"
                 ? `Select a color for the middle section`
                 : `Select a color for main content background`}
               :
@@ -323,20 +330,20 @@ const Create = (props) => {
             <input
               type="color"
               id="title-color"
-              value={contentBackgroundColor}
+              value={initialState.contentBackgroundColor || ""}
               onChange={(e) => {
-                setContentBackgroundColor(e.target.value);
+                setInitialState({ ...initialState, contentBackgroundColor: e.target.value });
               }}
             />
-            {template !== "job" ? (
+            {initialState.template !== "job" ? (
               <>
                 <label htmlFor="title-color">Select a background color for contact form section:</label>
                 <input
                   type="color"
                   id="title-color"
-                  value={formBackgroundColor}
+                  value={initialState.formBackgroundColor || ""}
                   onChange={(e) => {
-                    setFormBackgroundColor(e.target.value);
+                    setInitialState({ ...initialState, formBackgroundColor: e.target.value });
                   }}
                 />
               </>
@@ -346,18 +353,18 @@ const Create = (props) => {
                 <input
                   type="color"
                   id="job-desc-colorr"
-                  value={jobDescColor}
+                  value={initialState.jobDescColor || ""}
                   onChange={(e) => {
-                    setJobDescColor(e.target.value);
+                    setInitialState({ ...initialState, jobDescColor: e.target.value });
                   }}
                 />
                 <label htmlFor="bottom-section-color">Select a color for the bottom section background:</label>
                 <input
                   type="color"
                   id="bottom-section-color"
-                  value={bottomSectionColor}
+                  value={initialState.bottomSectionColor || ""}
                   onChange={(e) => {
-                    setBottomSectionColor(e.target.value);
+                    setInitialState({ ...initialState, bottomSectionColor: e.target.value });
                   }}
                 />
                 <label htmlFor="title">Enter text for the bottom section:</label>
@@ -365,18 +372,18 @@ const Create = (props) => {
                   type="text"
                   id="title"
                   placeholder="text"
-                  value={bottomSectionText}
+                  value={initialState.bottomSectionText || ""}
                   onChange={(e) => {
-                    setBottomSectionText(e.target.value);
+                    setInitialState({ ...initialState, bottomSectionText: e.target.value });
                   }}
                 />
                 <label htmlFor="bottom-section-text-color">Select a color for the bottom section text:</label>
                 <input
                   type="color"
                   id="bottom-section-text-color"
-                  value={bottomSectionTextColor}
+                  value={initialState.bottomSectionTextColor || ""}
                   onChange={(e) => {
-                    setBottomSectionTextColor(e.target.value);
+                    setInitialState({ ...initialState, bottomSectionTextColor: e.target.value });
                   }}
                 />
               </>
@@ -385,29 +392,14 @@ const Create = (props) => {
             {/*<label htmlFor="contacts-fields">Select contact form fields:</label>
             //!complete checkbox */}
             {error && <div style={{ color: "red" }}>{error}</div>}
-            {spinner && <Spinner />}
+            <div style={{ alignSelf: "left" }}>{spinner && <Spinner />}</div>
+
             <button className="createBtn" type="submit">
-              Create
+              {id ? `Update` : `Create`}
             </button>
           </form>
         </div>
-        <Preview
-          title={title}
-          image={filePreview}
-          template={template}
-          subTitle={subTitle}
-          titleColor={titleColor}
-          subTitleColor={subTitleColor}
-          editorContent={editorContent}
-          contentImage={ContentFilePreview}
-          contentBackgroundColor={contentBackgroundColor}
-          formBackgroundColor={formBackgroundColor}
-          jobTopSectionColor={jobTopSectionColor}
-          jobDescColor={jobDescColor}
-          bottomSectionColor={bottomSectionColor}
-          bottomSectionText={bottomSectionText}
-          bottomSectionTextColor={bottomSectionTextColor}
-        />
+        <Preview initialState={initialState} image={filePreview} contentImage={ContentFilePreview} />
       </div>
     </div>
   );

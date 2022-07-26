@@ -1,5 +1,14 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { MyContext } from "../context/MyContext";
 const PageDiv = ({ page }) => {
+  const { landingUpdateMode, setLandingUpdateMode } = useContext(MyContext);
+
+  const onUpdateClick = () => {
+    // setLandingUpdateMode(true);
+    // window.location.replace("/update");
+  };
+
   return (
     <div
       className="pageDiv-container"
@@ -16,10 +25,16 @@ const PageDiv = ({ page }) => {
       <Link to={{ pathname: `/contacts/landing/${page.id}`, state: page }}>
         <h3 className="link-contacts">contacts</h3>
       </Link>
-      <div>
+      <div className="pageDiv-bottom">
         {/*// need to add: delete + update */}
         <p>created </p>
         <p> {new Date(page.attributes.createdAt).toLocaleString()}</p>
+        <div className="landingButtons">
+          <Link to={`update/${page.id}`}>
+            <button onClick={onUpdateClick}>Update</button>
+          </Link>
+          <button>Delete</button>
+        </div>
       </div>
     </div>
   );
