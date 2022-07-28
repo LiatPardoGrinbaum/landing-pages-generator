@@ -1,19 +1,11 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
-const ContactRow = ({
-  contact,
-  id,
-  setContactUpdteMode,
-  contactUpdteMode,
-  name,
-  setName,
-  email,
-  setEmail,
-  phone,
-  setPhone,
-  note,
-  setNote,
-}) => {
+const ContactRow = ({ contact, id }) => {
+  const [contactUpdteMode, setContactUpdteMode] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [note, setNote] = useState("");
   const [readMore, setReadMore] = useState(false);
   const [currentId, setCurrentId] = useState("");
   const onEditClick = () => {

@@ -5,7 +5,7 @@ import { MyContext } from "../context/MyContext";
 import Spinner from "../components/Spinner";
 import ContactRow from "../components/ContactRow";
 import API from "../Api/API";
-//! need to change contact form rows for eact case (I only did it for job. left: events, product)!//
+//! need to change contact form rows for each case (I only did it for job. left: events, product)!//
 const ContactsPage = (props) => {
   const { spinner, setSpinner } = useContext(MyContext);
   const location = document.URL;
@@ -13,11 +13,7 @@ const ContactsPage = (props) => {
   const [landingData, setLandingData] = useState({});
   const [contacts, setContacts] = useState([]);
   //for updating
-  const [contactUpdteMode, setContactUpdteMode] = useState(false);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [note, setNote] = useState("");
+
   useEffect(() => {
     setSpinner(true);
     setError(null);
@@ -47,25 +43,12 @@ const ContactsPage = (props) => {
   }, [location, setSpinner]);
   // console.log(props.match.params.id);
 
-  console.log(name);
+  console.log("landingData", landingData);
   const insertContacts = () => {
     return contacts.map((contact, id) => {
       return (
         <React.Fragment key={id}>
-          <ContactRow
-            contact={contact}
-            id={id}
-            contactUpdteMode={contactUpdteMode}
-            setContactUpdteMode={setContactUpdteMode}
-            name={name}
-            setName={setName}
-            email={email}
-            setEmail={setEmail}
-            phone={phone}
-            setPhone={setPhone}
-            note={note}
-            setNote={setNote}
-          />
+          <ContactRow contact={contact} id={id} />
         </React.Fragment>
       );
     });
@@ -94,7 +77,8 @@ const ContactsPage = (props) => {
           <div>action</div>
           <div className="div-num">Contact no.</div>
           <div>name</div>
-          <div>email</div>
+          {landingData.attributes && <div>{landingData.attributes.template === "events" ? "guests" : "email"}</div>}
+
           <div>phone</div>
           <div>notes</div>
         </div>

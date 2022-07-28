@@ -33,19 +33,24 @@ const MyPages = () => {
     return myPages.map((page, id) => {
       return (
         <React.Fragment key={id}>
-          {/*  <Link
-            target="_blank"
-            to={{
-              pathname: `/landing/${page.attributes.uniqid}`,
-            }}>
-            {" "}
-            <PageDiv page={page} />
-          </Link> */}
-          <PageDiv page={page} />
+          <PageDiv page={page} handleDelete={handleDelete} setMyPages={setMyPages} />
         </React.Fragment>
       );
     });
   };
+
+  const handleDelete = async (page) => {
+    if (window.confirm("Are you sure you want to delete this page?")) {
+      const { data } = await API.delete(`/landings/${page.id}`, {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
+        },
+      });
+      const filteredPages = myPages.filter((landpage) => landpage.id !== page.id);
+      setMyPages(filteredPages);
+    }
+  };
+  console.log("myPages", myPages);
   return (
     <div className="MyPages">
       <Header />

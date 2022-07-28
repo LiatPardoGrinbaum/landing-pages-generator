@@ -127,17 +127,6 @@ const LandingPage = () => {
                     />
                   </>
                 )}
-
-                <label htmlFor="phone">Phone number:</label>
-                <input
-                  type="text"
-                  id="phone"
-                  placeholder="phone"
-                  value={phone}
-                  onChange={(e) => {
-                    setPhone(e.target.value);
-                  }}
-                />
                 {landingData.template === "events" && (
                   <>
                     <label htmlFor="number">Number of guests:</label>
@@ -152,8 +141,18 @@ const LandingPage = () => {
                     />
                   </>
                 )}
+                <label htmlFor="phone">Phone number:</label>
+                <input
+                  type="text"
+                  id="phone"
+                  placeholder="phone"
+                  value={phone}
+                  onChange={(e) => {
+                    setPhone(e.target.value);
+                  }}
+                />
 
-                <label htmlFor="phone">Personal note:</label>
+                <label htmlFor="note">Personal note:</label>
                 <textarea
                   type="text"
                   id="note"

@@ -1,10 +1,19 @@
 import { Link } from "react-router-dom";
+import API from "../Api/API";
+// import React, { useContext } from "react";
+// import { MyContext } from "../context/MyContext";
 
-const PageDiv = ({ page }) => {
-  const onUpdateClick = () => {
-    // setLandingUpdateMode(true);
-    // window.location.replace("/update");
-  };
+const PageDiv = ({ page, handleDelete }) => {
+  // const { deleteRender } = useContext(MyContext);
+  // const onDeleteClick = async () => {
+  //   if (window.confirm("Are you sure you want to delete this page?")) {
+  //     await API.delete(`/landings/${page.id}`, {
+  //       headers: {
+  //         Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
+  //       },
+  //     });
+  //   }
+  // };
 
   return (
     <div
@@ -28,9 +37,9 @@ const PageDiv = ({ page }) => {
         <p> {new Date(page.attributes.createdAt).toLocaleString()}</p>
         <div className="landingButtons">
           <Link to={`update/${page.id}`}>
-            <button onClick={onUpdateClick}>Update</button>
+            <button>Update</button>
           </Link>
-          <button>Delete</button>
+          <button onClick={() => handleDelete(page)}>Delete</button>
         </div>
       </div>
     </div>
