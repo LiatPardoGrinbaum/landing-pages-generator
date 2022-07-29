@@ -41,7 +41,7 @@ const MyPages = () => {
 
   const handleDelete = async (page) => {
     if (window.confirm("Are you sure you want to delete this page?")) {
-      const { data } = await API.delete(`/landings/${page.id}`, {
+      await API.delete(`/landings/${page.id}`, {
         headers: {
           Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
         },
