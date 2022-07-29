@@ -4,17 +4,6 @@ import API from "../Api/API";
 // import { MyContext } from "../context/MyContext";
 
 const PageDiv = ({ page, handleDelete }) => {
-  // const { deleteRender } = useContext(MyContext);
-  // const onDeleteClick = async () => {
-  //   if (window.confirm("Are you sure you want to delete this page?")) {
-  //     await API.delete(`/landings/${page.id}`, {
-  //       headers: {
-  //         Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
-  //       },
-  //     });
-  //   }
-  // };
-
   return (
     <div
       className="pageDiv-container"

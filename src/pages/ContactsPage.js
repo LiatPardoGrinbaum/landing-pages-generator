@@ -5,7 +5,7 @@ import { MyContext } from "../context/MyContext";
 import Spinner from "../components/Spinner";
 import ContactRow from "../components/ContactRow";
 import API from "../Api/API";
-//! need to change contact form rows for each case (I only did it for job. left: events, product)!//
+
 const ContactsPage = (props) => {
   const { spinner, setSpinner } = useContext(MyContext);
   const location = document.URL;
@@ -43,12 +43,31 @@ const ContactsPage = (props) => {
   }, [location, setSpinner]);
   // console.log(props.match.params.id);
 
+  const handleDelete = async (contact) => {
+    if (window.confirm("Are you sure you want to delete this contact?")) {
+      await API.delete(`/contacts/${contact.id}`, {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
+        },
+      });
+      const filteredContacts = contacts.filter((contactrow) => contactrow.id !== contact.id);
+      setContacts(filteredContacts);
+    }
+  };
+
   console.log("landingData", landingData);
   const insertContacts = () => {
     return contacts.map((contact, id) => {
       return (
         <React.Fragment key={id}>
-          <ContactRow contact={contact} id={id} />
+          <ContactRow
+            contact={contact}
+            id={id}
+            landingData={landingData}
+            setContacts={setContacts}
+            contacts={contacts}
+            handleDelete={handleDelete}
+          />
         </React.Fragment>
       );
     });
