@@ -7,6 +7,7 @@ import API from "../Api/API";
 import Spinner from "../components/Spinner";
 import Preview from "../components/Preview";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Create = (props) => {
   const inputRef = useRef(null);
@@ -166,7 +167,16 @@ const Create = (props) => {
                   checked={initialState.template === "events" || ""}
                   onChange={() => setInitialState({ ...initialState, template: "events" })}
                 />
-                Events
+                Events{" "}
+                <Link
+                  className="template-link"
+                  target="_blank"
+                  to={{
+                    pathname: "/eventpagedemo",
+                  }}>
+                  {" "}
+                  <span className="link-enter"> [example]</span>
+                </Link>
               </div>
               <div>
                 <input
@@ -176,7 +186,16 @@ const Create = (props) => {
                   checked={initialState.template === "product" || ""}
                   onChange={() => setInitialState({ ...initialState, template: "product" })}
                 />
-                Company's product advertising
+                Company's product advertising{" "}
+                <Link
+                  className="template-link"
+                  target="_blank"
+                  to={{
+                    pathname: "/productpagedemo",
+                  }}>
+                  {" "}
+                  <span className="link-enter"> [example]</span>
+                </Link>
               </div>
               <div>
                 <input
@@ -186,7 +205,16 @@ const Create = (props) => {
                   checked={initialState.template === "job" || ""}
                   onChange={() => setInitialState({ ...initialState, template: "job" })}
                 />
-                Job offer
+                Job offer{" "}
+                <Link
+                  className="template-link"
+                  target="_blank"
+                  to={{
+                    pathname: "/jobpagedemo",
+                  }}>
+                  {" "}
+                  <span className="link-enter"> [example]</span>
+                </Link>
               </div>
             </div>
             {/* //*event date- removed for now */}

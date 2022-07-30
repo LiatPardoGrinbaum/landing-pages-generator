@@ -299,6 +299,13 @@
   flex-direction: column;
   align-items: flex-start;
 }
+.form-create-landing form .radio-buttons .template-link {
+  text-decoration: none;
+  color: rgb(27, 27, 138);
+}
+.form-create-landing form .radio-buttons .template-link:hover {
+  color: rgb(117, 117, 166);
+}
 
 .MyPages {
   width: 100%;

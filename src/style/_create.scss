@@ -79,6 +79,13 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+      .template-link {
+        text-decoration: none;
+        color: rgb(27, 27, 138);
+        &:hover {
+          color: rgb(117, 117, 166);
+        }
+      }
     }
   }
 }
