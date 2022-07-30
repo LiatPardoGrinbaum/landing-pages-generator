@@ -23,7 +23,7 @@ const Preview = ({ initialState, image, contentImage }) => {
           </section>
           <section className="preview-middle" style={{ background: initialState.contentBackgroundColor }}>
             <div className="preview-middle-inner">
-              <img src={contentImage} height="100" alt="contentimg" />
+              {contentImage && <img src={contentImage} height="100" alt="contentimg" />}
               <div dangerouslySetInnerHTML={{ __html: initialState.editorContent }} />
             </div>
           </section>
