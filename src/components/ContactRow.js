@@ -12,7 +12,7 @@ const ContactRow = ({ contact, id, landingData, setContacts, contacts, handleDel
   const [currentId, setCurrentId] = useState("");
   const [activityLog, setActivityLog] = useState({});
   const [readMoreActivity, setReadMoreActivity] = useState(false);
-  const [lastPhoneDial, setLastPhoneDial] = useState("");
+  // const [lastPhoneDial, setLastPhoneDial] = useState("");
 
   // const [error, setError] = useState(null);
   // const [initialContactState, setInitialContactState] = useState({});
@@ -32,7 +32,7 @@ const ContactRow = ({ contact, id, landingData, setContacts, contacts, handleDel
     } catch (err) {
       console.log(err);
     }
-  }, []);
+  }, [contact.id]);
 
   const onEditClick = () => {
     // setCurrentId(e.target.value);
@@ -54,7 +54,7 @@ const ContactRow = ({ contact, id, landingData, setContacts, contacts, handleDel
     const updatedContactApi = { name, email, phone, note, number: guestsNum };
 
     try {
-      const { data } = await API.put(
+      await API.put(
         `/contacts/${contact.id}`,
         { data: updatedContactApi },
         {
@@ -227,6 +227,5 @@ const ContactRow = ({ contact, id, landingData, setContacts, contacts, handleDel
   );
 };
 export default ContactRow;
-{
-  /* // await API.post("/activitylogs" */
-}
+
+/* // await API.post("/activitylogs" */
