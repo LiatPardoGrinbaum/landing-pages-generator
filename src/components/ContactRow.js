@@ -50,13 +50,14 @@ const ContactRow = ({ contact, id, landingData, setContacts, contacts, handleDel
       });
       console.log("updatedContact", updatedContact);
       console.log("updatedContactApi", updatedContactApi);
-      setContacts(updatedContacts); //!render on parent page not working.. maybe I should move it to the parent...
+      setContacts(updatedContacts);
     } catch (err) {
       console.log(err);
     }
   };
   // const onUpdateClick = () => {};
   console.log("contacts", contacts);
+  console.log("phone type", typeof contact.attributes.phone); //*defined phone as number on strpi but here it is a string.. ??
   return (
     <div className="table-container" key={id}>
       <div className="div-num-vertical">{id + 1}</div>
@@ -114,15 +115,22 @@ const ContactRow = ({ contact, id, landingData, setContacts, contacts, handleDel
               disabled={!contactUpdteMode}></input>
           </div>
         )}
-
+        {/*   <p><a href={`tel:${contact.attributes.phone}`}>{contact.attributes.phone}</a></p> */}
         <div>
           <span className="span-cell">Phone:</span>
-          <input
-            className={currentId === id ? "input-updatemode" : "noneclassname"}
-            type="text"
-            value={currentId === id ? phone : contact.attributes.phone}
-            onChange={(e) => setPhone(e.target.value)}
-            disabled={!contactUpdteMode}></input>
+
+          {currentId === id ? (
+            <input
+              className="input-updatemode"
+              type="text"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              disabled={!contactUpdteMode}></input>
+          ) : (
+            <a href={`tel:${contact.attributes.phone}`} style={{ fontSize: "0.8rem" }}>
+              {contact.attributes.phone}
+            </a>
+          )}
         </div>
         <div>
           <span className="span-cell-textarea">Note:</span>

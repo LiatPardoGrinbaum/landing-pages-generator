@@ -4,6 +4,7 @@ import API from "../Api/API";
 import { MyContext } from "../context/MyContext";
 import PageDiv from "../components/PageDiv";
 import Spinner from "../components/Spinner";
+import { Redirect } from "react-router-dom";
 
 const MyPages = () => {
   const { loggedUser, spinner, setSpinner } = useContext(MyContext);
@@ -38,7 +39,9 @@ const MyPages = () => {
       );
     });
   };
-
+  if (!loggedUser) {
+    return <Redirect to="/" />;
+  }
   const handleDelete = async (page) => {
     if (window.confirm("Are you sure you want to delete this page?")) {
       await API.delete(`/landings/${page.id}`, {

@@ -6,7 +6,7 @@ import Spinner from "../components/Spinner";
 const LandingPage = () => {
   const { spinner, setSpinner } = useContext(MyContext);
   const location = document.URL;
-  console.log(location.split("/landing/")[1]);
+
   const [landingData, setLandingData] = useState({});
   const [error, setError] = useState(null);
   const [name, setName] = useState("");
@@ -35,6 +35,10 @@ const LandingPage = () => {
 
   const onHandleSumbit = async (e) => {
     e.preventDefault();
+    //*missing phone validation (only cellphone)
+    // if (!/^\(?(\d{3})\)?[-.\s]?(\d{3})[-.\s]?(\d{4})$/.test(phone)) {
+    //   throw new Error("phone number isn't valid");
+    // }
     let newContact;
     if (landingData.template === "job") {
       newContact = {
@@ -72,12 +76,13 @@ const LandingPage = () => {
     } catch (err) {
       console.log(err);
       setError(err.response.data.error.message);
+      console.log(err.response.data.error.message);
+      console.log("error", error);
     }
   };
-  console.log(landingData);
+  console.log("error", error);
   return (
     <div className="landingPage-container">
-      {error && <div style={{ color: "red" }}>{error}</div>}
       {spinner && <Spinner />}
       {landingData.template !== "job" && (
         <>
@@ -165,6 +170,8 @@ const LandingPage = () => {
                   }}
                 />
                 {message && <p style={{ color: "green" }}>{message}</p>}
+                {error && <div style={{ color: "red" }}>{error}</div>}
+
                 <button className="contactBtn" type="submit">
                   send
                 </button>
@@ -229,6 +236,7 @@ const LandingPage = () => {
                         setNote(e.target.value);
                       }}
                     />
+                    {error && <div style={{ color: "red" }}>{error}</div>}
                     <button className="contactBtn" type="submit">
                       send
                     </button>
