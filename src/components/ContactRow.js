@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import API from "../Api/API";
 
 const ContactRow = ({ contact, id, landingData, setContacts, contacts, handleDelete }) => {
@@ -10,8 +10,29 @@ const ContactRow = ({ contact, id, landingData, setContacts, contacts, handleDel
   const [guestsNum, setGuestsNum] = useState("");
   const [readMore, setReadMore] = useState(false);
   const [currentId, setCurrentId] = useState("");
+  const [activityLog, setActivityLog] = useState({});
+  const [readMoreActivity, setReadMoreActivity] = useState(false);
+  const [lastPhoneDial, setLastPhoneDial] = useState("");
+
   // const [error, setError] = useState(null);
   // const [initialContactState, setInitialContactState] = useState({});
+  useEffect(() => {
+    try {
+      const getData = async () => {
+        const { data } = await API.get(`activitylogs?filters[contactID]=${contact.id}`, {
+          headers: {
+            Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
+          },
+        });
+
+        setActivityLog(data.data[0]);
+      };
+
+      getData();
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
 
   const onEditClick = () => {
     // setCurrentId(e.target.value);
@@ -42,10 +63,9 @@ const ContactRow = ({ contact, id, landingData, setContacts, contacts, handleDel
           },
         }
       );
-      console.log("data", data);
+
       const updatedContact = { ...contact, attributes: { name, email, phone, note, number: guestsNum } };
       const updatedContacts = contacts.map((contactItem) => {
-        console.log("contactItem", contactItem);
         return contactItem.id === contact.id ? updatedContact : contactItem;
       });
       console.log("updatedContact", updatedContact);
@@ -58,6 +78,32 @@ const ContactRow = ({ contact, id, landingData, setContacts, contacts, handleDel
   // const onUpdateClick = () => {};
   console.log("contacts", contacts);
   console.log("phone type", typeof contact.attributes.phone); //*defined phone as number on strpi but here it is a string.. ??
+  console.log("activityLog", activityLog);
+
+  const onPhoneClicked = async () => {
+    //!why is activitylog undefined inside that function?
+    console.log("activityLog", activityLog);
+    // try {
+    //   const getData = async () => {
+    //     console.log("activityLog.id", activityLog);
+    //     const { data } = await API.put(
+    //       `activitylogs/${activityLog.id}`,
+    //       { data: { phone: new Date(), mail: new Date() } },
+    //       {
+    //         headers: {
+    //           Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
+    //         },
+    //       }
+    //     );
+    //     console.log(("phone data", data));
+    //     // setLastPhoneDial(data)
+    //   };
+
+    //   getData();
+    // } catch (err) {
+    //   console.log(err);
+    // }
+  };
   return (
     <div className="table-container" key={id}>
       <div className="div-num-vertical">{id + 1}</div>
@@ -107,12 +153,18 @@ const ContactRow = ({ contact, id, landingData, setContacts, contacts, handleDel
         ) : (
           <div>
             <span className="span-cell">Email:</span>
-            <input
-              className={currentId === id ? "input-updatemode" : "noneclassname"}
-              type="text"
-              value={currentId === id ? email : contact.attributes.email}
-              onChange={(e) => setEmail(e.target.value)}
-              disabled={!contactUpdteMode}></input>
+            {currentId === id ? (
+              <input
+                className={currentId === id ? "input-updatemode" : "noneclassname"}
+                type="text"
+                value={currentId === id ? email : contact.attributes.email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={!contactUpdteMode}></input>
+            ) : (
+              <a href={`mailto:${contact.attributes.email}`} style={{ fontSize: "0.8rem" }}>
+                {contact.attributes.email}
+              </a>
+            )}
           </div>
         )}
         {/*   <p><a href={`tel:${contact.attributes.phone}`}>{contact.attributes.phone}</a></p> */}
@@ -127,7 +179,7 @@ const ContactRow = ({ contact, id, landingData, setContacts, contacts, handleDel
               onChange={(e) => setPhone(e.target.value)}
               disabled={!contactUpdteMode}></input>
           ) : (
-            <a href={`tel:${contact.attributes.phone}`} style={{ fontSize: "0.8rem" }}>
+            <a href={`tel:${contact.attributes.phone}`} style={{ fontSize: "0.8rem" }} onClick={onPhoneClicked}>
               {contact.attributes.phone}
             </a>
           )}
@@ -148,10 +200,26 @@ const ContactRow = ({ contact, id, landingData, setContacts, contacts, handleDel
               {!readMore ? contact.attributes.note.substring(0, 15) + "..." : contact.attributes.note}
               <span
                 onClick={() => setReadMore(!readMore)}
-                style={{ color: "blue", fontWeight: "bold", fontSize: "0.8rem", cursor: "pointer" }}>
-                read more
+                style={{ color: "rgb(13, 150, 136)", fontWeight: "bold", fontSize: "0.8rem", cursor: "pointer" }}>
+                {readMore ? "read less" : "read more"}
               </span>
             </p>
+          )}
+        </div>
+        <div>
+          <span className="span-cell-textarea">Activity log:</span>
+          <p style={{ fontSize: "0.8rem" }}>
+            <span
+              onClick={() => setReadMoreActivity(!readMoreActivity)}
+              style={{ color: "rgb(13, 150, 136)", fontWeight: "bold", fontSize: "0.8rem", cursor: "pointer" }}>
+              {readMoreActivity ? "close" : " Get activity log"}
+            </span>
+          </p>
+          {readMoreActivity && (
+            <div className="activitylog">
+              <p>{`Contact created at: ${new Date(contact.attributes.createdAt).toLocaleString()}`}</p>
+              <p>{`Contact updated at: ${new Date(contact.attributes.updatedAt).toLocaleString()}`}</p>
+            </div>
           )}
         </div>
       </div>
@@ -159,3 +227,6 @@ const ContactRow = ({ contact, id, landingData, setContacts, contacts, handleDel
   );
 };
 export default ContactRow;
+{
+  /* // await API.post("/activitylogs" */
+}

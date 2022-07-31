@@ -85,6 +85,7 @@ const ContactsPage = (props) => {
       <h3>Page name:</h3>
 
       <Link
+        className="title-contact-link"
         target="_blank"
         to={{
           pathname: `/landing/${landingData.id}`,
@@ -104,6 +105,7 @@ const ContactsPage = (props) => {
 
           <div>phone</div>
           <div>notes</div>
+          <div>activity</div>
         </div>
         {contacts.length !== 0 && insertContacts()}
       </div>

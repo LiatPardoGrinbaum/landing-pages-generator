@@ -558,9 +558,8 @@
 .contacts-container h1 {
   margin-bottom: 1rem;
 }
-.contacts-container a {
+.contacts-container .title-contact-link {
   text-decoration: none;
-  font-size: 1rem;
 }
 .contacts-container .span-link {
   color: rgb(150, 211, 150);
@@ -573,8 +572,13 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: rgb(250, 245, 236);
+  background: rgb(236, 250, 249);
   margin-top: 2rem;
+}
+.contacts-table a {
+  text-decoration: none;
+  font-size: 1rem;
+  color: rgb(13, 150, 136);
 }
 
 .table-container {
@@ -610,6 +614,7 @@
 .contact-first-row .span-cell-textarea {
   margin-right: 0.3rem;
   font-weight: bold;
+  font-size: 0.8rem;
   display: none;
 }
 .contact-row input,
@@ -638,6 +643,15 @@
 .contact-first-row button {
   width: 4rem;
   margin: 0.1rem 0.2rem;
+}
+.contact-row .activitylog,
+.contact-first-row .activitylog {
+  width: 100%;
+  font-size: 0.8rem;
+}
+.contact-row .activitylog div,
+.contact-first-row .activitylog div {
+  padding: 0rem;
 }
 
 .contact-first-row {

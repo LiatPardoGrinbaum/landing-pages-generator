@@ -67,12 +67,13 @@ const LandingPage = () => {
       };
     }
     try {
-      await API.post("/contacts", { data: newContact });
+      const { data } = await API.post("/contacts", { data: newContact });
       setName("");
       setEmail("");
       setPhone("");
       setNote("");
       setMessage("Your form has been sent successfully!");
+      await API.post("/activitylogs", { data: { phone: new Date(), mail: new Date(), contactID: data.data.id } });
     } catch (err) {
       console.log(err);
       setError(err.response.data.error.message);
