@@ -31,7 +31,7 @@ const ContactsPage = (props) => {
         });
         setContacts(response.data.data);
 
-        console.log(response.data.data);
+        // console.log(response.data.data);
         setSpinner(false);
       };
       getData();
@@ -41,7 +41,11 @@ const ContactsPage = (props) => {
       setSpinner(false);
     }
   }, [location, setSpinner]);
-  // console.log(props.match.params.id);
+
+  // useEffect(() => {
+  //   console.log(contacts);
+  // }, [contacts]);
+  // // console.log(props.match.params.id);
 
   const handleDelete = async (contact) => {
     if (window.confirm("Are you sure you want to delete this contact?")) {
@@ -55,7 +59,7 @@ const ContactsPage = (props) => {
     }
   };
 
-  console.log("landingData", landingData);
+  // console.log("landingData", landingData);
   const insertContacts = () => {
     return contacts.map((contact, id) => {
       return (

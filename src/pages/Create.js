@@ -13,13 +13,9 @@ const Create = (props) => {
   const inputRef = useRef(null);
   const editorRef = useRef(null);
   const { loggedUser, spinner, setSpinner } = useContext(MyContext);
-
   const [ContentFilePreview, setContentFilePreview] = useState(null);
-
   const [username, setUsername] = useState("");
-
   const [filePreview, setFilePreview] = useState("");
-
   const [error, setError] = useState(null);
   //for updating:
   let { id } = useParams();

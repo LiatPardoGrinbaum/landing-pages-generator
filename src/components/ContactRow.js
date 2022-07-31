@@ -28,30 +28,35 @@ const ContactRow = ({ contact, id, landingData, setContacts, contacts, handleDel
   const onConfirmClick = async () => {
     setCurrentId("");
     setContactUpdteMode(false);
-    const updatedContact = { ...contact, name, email, phone, note, number: guestsNum };
+    console.log("contact", contact);
+    // const updatedContactApi = { ...contact, attributes: { name, email, phone, note, number: guestsNum } }; //!why isnt it sending this to api? in api request it send it without attributes.. but the data response does has attributes..
+    const updatedContactApi = { name, email, phone, note, number: guestsNum };
+
     try {
-      await API.put(
+      const { data } = await API.put(
         `/contacts/${contact.id}`,
-        { data: updatedContact },
+        { data: updatedContactApi },
         {
           headers: {
             Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
           },
         }
       );
-
-      console.log("lol");
-      const updatedContacts = contacts.map((contactItem) =>
-        contactItem.id === contact.id ? updatedContact : contactItem
-      );
-      console.log("updatedContacts", updatedContacts);
+      console.log("data", data);
+      const updatedContact = { ...contact, attributes: { name, email, phone, note, number: guestsNum } };
+      const updatedContacts = contacts.map((contactItem) => {
+        console.log("contactItem", contactItem);
+        return contactItem.id === contact.id ? updatedContact : contactItem;
+      });
+      console.log("updatedContact", updatedContact);
+      console.log("updatedContactApi", updatedContactApi);
       setContacts(updatedContacts); //!render on parent page not working.. maybe I should move it to the parent...
     } catch (err) {
       console.log(err);
     }
   };
   // const onUpdateClick = () => {};
-  console.log(contactUpdteMode);
+  console.log("contacts", contacts);
   return (
     <div className="table-container" key={id}>
       <div className="div-num-vertical">{id + 1}</div>
