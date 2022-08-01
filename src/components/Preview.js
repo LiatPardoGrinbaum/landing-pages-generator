@@ -2,6 +2,7 @@ const Preview = ({ initialState, image, contentImage }) => {
   console.log(initialState.editorContent);
   return (
     <div className="landing-preview">
+      <h2>Preview</h2>
       <h3>{initialState.template}</h3>
       {initialState.template === "events" || initialState.template === "product" ? (
         <>

@@ -49,3 +49,20 @@
     }
   }
 }
+
+@media (max-width: 500px) {
+  .navbar-inner {
+    margin: 0;
+  }
+  .navbar-link {
+    font-size: 1rem;
+  }
+
+  .navbar-left {
+    margin-left: 0.5rem;
+  }
+
+  .navbar-right {
+    margin-right: 0.5rem;
+  }
+}

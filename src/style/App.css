@@ -48,6 +48,20 @@
   border-bottom: 1px solid rgb(207, 255, 211);
 }
 
+@media (max-width: 500px) {
+  .navbar-inner {
+    margin: 0;
+  }
+  .navbar-link {
+    font-size: 1rem;
+  }
+  .navbar-left {
+    margin-left: 0.5rem;
+  }
+  .navbar-right {
+    margin-right: 0.5rem;
+  }
+}
 .homepage {
   width: 100%;
   display: flex;
@@ -307,6 +321,18 @@
   color: rgb(117, 117, 166);
 }
 
+@media (max-width: 400px) {
+  .tox-tinymce {
+    width: 340px;
+  }
+}
+@media (max-width: 500px) {
+  .createPage #title,
+.createPage #shortDesc,
+.createPage #subtitle {
+    width: 20rem;
+  }
+}
 .MyPages {
   width: 100%;
   display: flex;

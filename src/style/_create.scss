@@ -100,3 +100,17 @@
 //      width: 600px !important;
 //   }
 // }
+@media (max-width: 400px) {
+  .tox-tinymce {
+    width: 340px;
+  }
+}
+@media (max-width: 500px) {
+  .createPage {
+    #title,
+    #shortDesc,
+    #subtitle {
+      width: 20rem;
+    }
+  }
+}

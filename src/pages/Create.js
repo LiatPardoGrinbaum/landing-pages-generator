@@ -423,6 +423,7 @@ const Create = (props) => {
             </button>
           </form>
         </div>
+
         <Preview initialState={initialState} image={filePreview} contentImage={ContentFilePreview} />
       </div>
     </div>
