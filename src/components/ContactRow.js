@@ -49,12 +49,12 @@ const ContactRow = ({ contact, id, landingData, setContacts, contacts, handleDel
   const onConfirmClick = async () => {
     setCurrentId("");
     setContactUpdteMode(false);
-    console.log("contact", contact);
+
     // const updatedContactApi = { ...contact, attributes: { name, email, phone, note, number: guestsNum } }; //!why isnt it sending this to api? in api request it send it without attributes.. but the data response does has attributes..
     const updatedContactApi = { name, email, phone, note, number: guestsNum };
 
     try {
-      await API.put(
+      const { data } = await API.put(
         `/contacts/${contact.id}`,
         { data: updatedContactApi },
         {
@@ -64,46 +64,26 @@ const ContactRow = ({ contact, id, landingData, setContacts, contacts, handleDel
         }
       );
 
-      const updatedContact = { ...contact, attributes: { name, email, phone, note, number: guestsNum } };
+      let createdAt = new Date(data.data.attributes.createdAt);
+      let updatedAt = new Date(data.data.attributes.updatedAt);
+      const updatedContact = {
+        ...contact,
+        attributes: { name, email, phone, note, number: guestsNum, createdAt, updatedAt },
+      };
       const updatedContacts = contacts.map((contactItem) => {
         return contactItem.id === contact.id ? updatedContact : contactItem;
       });
-      console.log("updatedContact", updatedContact);
-      console.log("updatedContactApi", updatedContactApi);
+
       setContacts(updatedContacts);
     } catch (err) {
       console.log(err);
     }
   };
   // const onUpdateClick = () => {};
-  console.log("contacts", contacts);
+
   console.log("phone type", typeof contact.attributes.phone); //*defined phone as number on strpi but here it is a string.. ??
-  console.log("activityLog", activityLog);
+  console.log("activityLog", activityLog); //not functional
 
-  const onPhoneClicked = async () => {
-    //!why is activitylog undefined inside that function?
-    console.log("activityLog", activityLog);
-    // try {
-    //   const getData = async () => {
-    //     console.log("activityLog.id", activityLog);
-    //     const { data } = await API.put(
-    //       `activitylogs/${activityLog.id}`,
-    //       { data: { phone: new Date(), mail: new Date() } },
-    //       {
-    //         headers: {
-    //           Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
-    //         },
-    //       }
-    //     );
-    //     console.log(("phone data", data));
-    //     // setLastPhoneDial(data)
-    //   };
-
-    //   getData();
-    // } catch (err) {
-    //   console.log(err);
-    // }
-  };
   return (
     <div className="table-container" key={id}>
       <div className="div-num-vertical">{id + 1}</div>
@@ -179,7 +159,7 @@ const ContactRow = ({ contact, id, landingData, setContacts, contacts, handleDel
               onChange={(e) => setPhone(e.target.value)}
               disabled={!contactUpdteMode}></input>
           ) : (
-            <a href={`tel:${contact.attributes.phone}`} style={{ fontSize: "0.8rem" }} onClick={onPhoneClicked}>
+            <a href={`tel:${contact.attributes.phone}`} style={{ fontSize: "0.8rem" }}>
               {contact.attributes.phone}
             </a>
           )}

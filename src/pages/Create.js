@@ -34,6 +34,8 @@ const Create = (props) => {
           const { data } = await API.get(`/landings?filters[id]=${id}`);
           console.log(data);
           setInitialState(data.data[0].attributes);
+          setContentFilePreview(data.data[0].attributes.imageURLsmall);
+          setFilePreview(data.data[0].attributes.imageURL);
           setSpinner(false);
         };
         getData();
@@ -61,7 +63,8 @@ const Create = (props) => {
     try {
       let response1;
       let response2;
-
+      if (initialState.file === undefined || initialState.contentFile === undefined)
+        throw new Error("You must upload the images.");
       if (initialState.template !== "job") {
         const formData = new FormData();
         formData.append("files", initialState.file);
@@ -113,7 +116,7 @@ const Create = (props) => {
       } else {
         await API.put(
           `/landings/${id}`,
-          { data: newLanding },
+          { data: { ...newLanding, uniqid: initialState.uniqid } },
           {
             headers: {
               Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
@@ -126,8 +129,7 @@ const Create = (props) => {
 
       props.history.push("/mypages");
     } catch (err) {
-      console.log(err);
-      setError(err.response.data.error.message);
+      err.response === undefined ? setError(err.message) : setError(err.response.data.error.message);
       setSpinner(false);
     }
   };
@@ -135,6 +137,7 @@ const Create = (props) => {
   console.log("id", id);
 
   console.log("initialState", initialState);
+  console.log("initialState image", initialState.imageURL);
   return (
     <div className="createPage">
       <Header />
@@ -286,24 +289,22 @@ const Create = (props) => {
                 <input
                   ref={inputRef}
                   type="file"
-                  label="Upload Image (optional):"
+                  label="Upload Image"
                   id="image"
                   onChange={(e) => {
                     setInitialState({ ...initialState, file: e.target.files[0] });
                     setFilePreview(URL.createObjectURL(e.target.files[0]));
-                    // e.target.value = null;
                   }}
                 />
                 <label htmlFor="contentimage">Upload Image for content section:</label>
                 <input
                   ref={inputRef}
                   type="file"
-                  label="Upload Image for content section (optional):"
+                  label="Upload Image for content section"
                   id="contentimage"
                   onChange={(e) => {
                     setInitialState({ ...initialState, contentFile: e.target.files[0] });
                     setContentFilePreview(URL.createObjectURL(e.target.files[0]));
-                    // e.target.value = null;
                   }}
                 />
               </>
