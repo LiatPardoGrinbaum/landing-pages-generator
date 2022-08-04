@@ -32,7 +32,7 @@ const Create = (props) => {
       try {
         const getData = async () => {
           const { data } = await API.get(`/landings?filters[id]=${id}`);
-          console.log(data);
+
           setInitialState(data.data[0].attributes);
           setContentFilePreview(data.data[0].attributes.imageURLsmall);
           setFilePreview(data.data[0].attributes.imageURL);
@@ -86,6 +86,8 @@ const Create = (props) => {
       }
       let newLanding;
       // setImageURL(data[0].url);
+      if (initialState.titleColor === undefined) throw new Error("Please pick a color for the title.");
+      if (initialState.editorContent === undefined) throw new Error("Please add some text in the editor.");
       if (initialState.template === "job") {
         newLanding = {
           ...initialState,
@@ -134,10 +136,6 @@ const Create = (props) => {
     }
   };
 
-  console.log("id", id);
-
-  console.log("initialState", initialState);
-  console.log("initialState image", initialState.imageURL);
   return (
     <div className="createPage">
       <Header />
@@ -414,10 +412,8 @@ const Create = (props) => {
               </>
             )}
 
-            {/*<label htmlFor="contacts-fields">Select contact form fields:</label>
-            //!complete checkbox */}
             {error && <div style={{ color: "red" }}>{error}</div>}
-            <div style={{ alignSelf: "left" }}>{spinner && <Spinner />}</div>
+            <div className="spinnerCreate">{spinner && <Spinner />}</div>
 
             <button className="createBtn" type="submit">
               {id ? `Update` : `Create`}

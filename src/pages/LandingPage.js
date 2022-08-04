@@ -94,7 +94,9 @@ const LandingPage = () => {
             <h2 style={{ color: landingData.subTitleColor }}>{landingData.subTitle}</h2>
           </section>
 
-          <section className="section-middle" style={{ backgroundColor: landingData.contentBackgroundColor }}>
+          <section
+            className="section-middle"
+            style={{ backgroundColor: landingData.contentBackgroundColor || "whitesmoke" }}>
             <div>
               <img
                 alt="img2"
@@ -105,7 +107,9 @@ const LandingPage = () => {
             </div>
             <div dangerouslySetInnerHTML={{ __html: landingData.editorContent }} />
           </section>
-          <section className="section-bottom" style={{ backgroundColor: landingData.formBackgroundColor }}>
+          <section
+            className="section-bottom"
+            style={{ backgroundColor: landingData.formBackgroundColor || "whitesmoke" }}>
             <div className="form-contacts">
               <h1>Contact us</h1>
               <form onSubmit={onHandleSumbit}>
@@ -183,12 +187,14 @@ const LandingPage = () => {
       )}
       {landingData.template === "job" && (
         <>
-          <section className="JobPage-top" style={{ backgroundColor: landingData.jobTopSectionColor }}>
+          <section className="JobPage-top" style={{ backgroundColor: landingData.jobTopSectionColor || "whitesmoke" }}>
             <h1 className="jobOffer-h1" style={{ color: landingData.title }}>
               Job offer!
             </h1>
           </section>
-          <section className="jobPage-middle" style={{ backgroundColor: landingData.contentBackgroundColor }}>
+          <section
+            className="jobPage-middle"
+            style={{ backgroundColor: landingData.contentBackgroundColor || "whitesmoke" }}>
             <div className="jobPage-middle-inner">
               <div dangerouslySetInnerHTML={{ __html: landingData.editorContent }} />
               <div>
@@ -250,7 +256,10 @@ const LandingPage = () => {
 
           <section
             className="jobPage-bottom"
-            style={{ backgroundColor: landingData.bottomSectionColor, color: landingData.bottomSectionTextColor }}>
+            style={{
+              backgroundColor: landingData.bottomSectionColor,
+              color: landingData.bottomSectionTextColor || "whitesmoke",
+            }}>
             {landingData.bottomSectionText}
           </section>
         </>

@@ -1,6 +1,4 @@
 const Preview = ({ initialState, image, contentImage }) => {
-  console.log("image in preview", image);
-  console.log("liat");
   return (
     <div className="landing-preview">
       <h2>Preview</h2>

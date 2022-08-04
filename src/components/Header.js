@@ -1,19 +1,18 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+// import {  useLocation } from "react-router-dom";
 import { MyContext } from "../context/MyContext";
 import { useContext } from "react";
 
 const Header = () => {
   const { loggedUser, setLoggedUser } = useContext(MyContext);
-  const path = useLocation().pathname;
-  console.log(path);
+  // const path = useLocation().pathname;
+  // console.log(path);
   const onClickLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
     setLoggedUser(null);
   };
-  // if (!loggedUser) {
-  //   return <Redirect to="/" />;
-  // }
+
   return (
     <div className="Header">
       <div className="navbar-inner">
