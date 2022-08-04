@@ -74,6 +74,12 @@
       &:hover {
         background: rgb(81, 124, 70);
       }
+      &:disabled {
+        background: lightgray;
+        &:hover {
+          background: lightgray;
+        }
+      }
     }
     .radio-buttons {
       display: flex;

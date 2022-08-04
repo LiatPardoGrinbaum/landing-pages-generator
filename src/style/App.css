@@ -308,6 +308,12 @@
 .form-create-landing form button:hover {
   background: rgb(81, 124, 70);
 }
+.form-create-landing form button:disabled {
+  background: lightgray;
+}
+.form-create-landing form button:disabled:hover {
+  background: lightgray;
+}
 .form-create-landing form .radio-buttons {
   display: flex;
   flex-direction: column;

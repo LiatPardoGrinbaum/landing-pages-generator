@@ -415,7 +415,7 @@ const Create = (props) => {
             {error && <div style={{ color: "red" }}>{error}</div>}
             <div className="spinnerCreate">{spinner && <Spinner />}</div>
 
-            <button className="createBtn" type="submit">
+            <button className="createBtn" type="submit" disabled={spinner}>
               {id ? `Update` : `Create`}
             </button>
           </form>
