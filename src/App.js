@@ -11,6 +11,7 @@ import ContactsPage from "./pages/ContactsPage";
 import EventPageDemo from "./pages/EventPageDemo";
 import JobPageDemo from "./pages/JobPageDemo";
 import ProductPageDemo from "./pages/ProductPageDemo";
+import SlackTest from "./components/SlackTest";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path="/eventpagedemo" component={EventPageDemo} />
             <Route path="/jobpagedemo" component={JobPageDemo} />
             <Route path="/productpagedemo" component={ProductPageDemo} />
+            <Route path="/slacktest" component={SlackTest} />
           </Switch>
         </div>
       </BrowserRouter>

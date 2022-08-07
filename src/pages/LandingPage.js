@@ -77,11 +77,9 @@ const LandingPage = () => {
     } catch (err) {
       console.log(err);
       setError(err.response.data.error.message);
-      console.log(err.response.data.error.message);
-      console.log("error", error);
     }
   };
-  console.log("error", error);
+
   return (
     <div className="landingPage-container">
       {spinner && <Spinner />}
