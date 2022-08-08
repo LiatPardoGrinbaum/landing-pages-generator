@@ -2,8 +2,8 @@ import React from "react";
 import axios from "axios";
 
 const SlackTest = () => {
-  const slackToken = "xoxb-3018164414756-3907084483186-TLwvNfA7UNbnQnrkceVHxGAL";
   const onHandleClick = async () => {
+    const slackToken = "xoxb-3018164414756-3907084483186-TLwvNfA7UNbnQnrkceVHxGAL";
     const url = "https://slack.com/api/chat.postMessage";
     try {
       const res = await axios.post(
@@ -17,12 +17,12 @@ const SlackTest = () => {
 
       console.log("Done", res.data);
     } catch (err) {
-      console.log(error);
+      console.log(err);
     }
   };
   return (
     <div>
-      <buttom onClick={onHandleClick}>Send to Slack</buttom>
+      <button onClick={onHandleClick}>Send to Slack</button>
     </div>
   );
 };
