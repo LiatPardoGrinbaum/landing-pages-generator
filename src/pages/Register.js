@@ -4,9 +4,10 @@ import { MyContext } from "../context/MyContext";
 // import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import Header from "../components/Header";
+import Spinner from "../components/Spinner";
 
 const Register = () => {
-  const { loggedUser, setLoggedUser, setToken } = useContext(MyContext);
+  const { loggedUser, setLoggedUser, setToken, setSpinner, spinner } = useContext(MyContext);
   const [username, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,7 +16,7 @@ const Register = () => {
 
   const onHandleSumbit = async (e) => {
     e.preventDefault();
-
+    setSpinner(true);
     const newUser = {
       username,
       email,
@@ -30,14 +31,18 @@ const Register = () => {
       localStorage.setItem("user", JSON.stringify(data.user));
       setLoggedUser(data.user);
       setToken(data.jwt);
+      setSpinner(false);
     } catch (err) {
       console.log(err);
       setError(err.response.data.error.message);
+      setSpinner(false);
     }
   };
   if (loggedUser) {
     return <Redirect to="/" />;
   }
+  if (spinner) return <Spinner />;
+
   return (
     <div className="login-register-container">
       <Header />

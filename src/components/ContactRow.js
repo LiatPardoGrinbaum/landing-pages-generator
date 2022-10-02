@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import API from "../Api/API";
 
 const ContactRow = ({ contact, id, landingData, setContacts, contacts, handleDelete }) => {
@@ -10,29 +10,29 @@ const ContactRow = ({ contact, id, landingData, setContacts, contacts, handleDel
   const [guestsNum, setGuestsNum] = useState("");
   const [readMore, setReadMore] = useState(false);
   const [currentId, setCurrentId] = useState("");
-  const [activityLog, setActivityLog] = useState({});
+  // const [activityLog, setActivityLog] = useState({});
   const [readMoreActivity, setReadMoreActivity] = useState(false);
   // const [lastPhoneDial, setLastPhoneDial] = useState("");
-
+  console.log("contact", contact);
   // const [error, setError] = useState(null);
   // const [initialContactState, setInitialContactState] = useState({});
-  useEffect(() => {
-    try {
-      const getData = async () => {
-        const { data } = await API.get(`activitylogs?filters[contactID]=${contact.id}`, {
-          headers: {
-            Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
-          },
-        });
+  // useEffect(() => {
+  //   try {
+  //     const getData = async () => {
+  //       const { data } = await API.get(`activitylogs?filters[contactID]=${contact.id}`, {
+  //         headers: {
+  //           Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
+  //         },
+  //       });
+  //       console.log("data", data);
+  //       setActivityLog(data.data[0]);
+  //     };
 
-        setActivityLog(data.data[0]);
-      };
-
-      getData();
-    } catch (err) {
-      console.log(err);
-    }
-  }, [contact.id]);
+  //     getData();
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }, [contact.id]);
 
   const onEditClick = () => {
     // setCurrentId(e.target.value);
@@ -82,7 +82,6 @@ const ContactRow = ({ contact, id, landingData, setContacts, contacts, handleDel
   // const onUpdateClick = () => {};
 
   console.log("phone type", typeof contact.attributes.phone); //*defined phone as number on strpi but here it is a string.. ??
-  console.log("activityLog", activityLog); //not functional
 
   return (
     <div className="table-container" key={id}>

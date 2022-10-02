@@ -19,7 +19,4 @@ An example of "My Pages" page:
 An example of contacts page:  
  ![contacts](/public/contacts.JPG)
 
-An example of an event page made by a user:  
-[event page](https://landing-page-generator.netlify.app/landing/10)
-
 &copy; Liat Pardo Grinbaum &copy;
