@@ -4,9 +4,10 @@ import API from "../Api/API";
 import { Redirect } from "react-router-dom";
 import { MyContext } from "../context/MyContext";
 import Header from "../components/Header";
+import Spinner from "../components/Spinner";
 
 const Login = () => {
-  const { loggedUser, setLoggedUser, setToken, setSpinner } = useContext(MyContext);
+  const { loggedUser, setLoggedUser, setToken, setSpinner, spinner } = useContext(MyContext);
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
 
@@ -38,7 +39,7 @@ const Login = () => {
   if (loggedUser) {
     return <Redirect to="/" />;
   }
-
+  if (spinner) return <Spinner />;
   return (
     <div className="login-register-container">
       <Header />

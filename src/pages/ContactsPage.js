@@ -58,7 +58,7 @@ const ContactsPage = (props) => {
       setContacts(filteredContacts);
     }
   };
-
+  console.log(contacts);
   // console.log("landingData", landingData);
   const insertContacts = () => {
     return contacts.map((contact, id) => {
