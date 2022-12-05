@@ -400,11 +400,19 @@
   width: auto;
 }
 .pageDiv-container .pageDiv-bottom .landingButtons button {
-  padding: 0.2rem 0.4rem;
+  color: white;
+  font-family: "Merriweather Sans", sans-serif;
+  padding: 0.2rem 0.6rem;
   border-radius: 0.2rem;
   border: none;
+  background-color: rgba(56, 126, 137, 0.901);
   margin: 0.3rem;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  cursor: pointer;
+}
+.pageDiv-container .pageDiv-bottom .landingButtons button:hover {
+  color: black;
+  background-color: rgba(129, 213, 226, 0.844);
 }
 .pageDiv-container a {
   width: 100%;

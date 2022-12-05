@@ -72,6 +72,16 @@ const Login = () => {
         <p className="sign-up-link">
           Not a member? <NavLink to="/register">Sign up</NavLink>, it's free.
         </p>
+        <br></br>
+        <div style={{ padding: "0.2rem", backgroundColor: "rgba(179, 241, 202, 0.34)", borderRadius: "0.5rem" }}>
+          <h5>
+            For example, log in with: <br></br>
+            <span>username:</span>
+            <span style={{ color: "green" }}>ella1 </span>
+            <span> password:</span>
+            <span style={{ color: "green" }}>ella1234</span>
+          </h5>
+        </div>
       </div>
     </div>
   );
